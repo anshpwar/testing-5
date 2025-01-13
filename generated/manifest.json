@@ -1,0 +1,21 @@
+{
+  "generated_by": "tools/gen_manifest.py",
+  "rules": {
+    "daily_post_limit": "ae1d7755270d",
+    "daily_reply_limit": "d84c53fb32e9",
+    "feed_page_size": "82ee1f37af3f",
+    "follow_limit_per_day": "85595fc00f25",
+    "freshness_window_hours": "901c6048e18c",
+    "like_weight_points": "17a41909c8fa",
+    "max_following": "f429070babb6",
+    "media_size_limit_kb": "6a1bb9efa544",
+    "mute_duration_hours": "ee258f5c2a64",
+    "post_length_limit": "1a0e7d467431",
+    "reply_weight_points": "54d771e4a411",
+    "report_auto_hide_threshold": "53895860fcca",
+    "report_cooldown_minutes": "2a3c487afb31",
+    "suspension_days": "c66654475b30",
+    "trending_min_mentions": "c6f29d62502c",
+    "verified_follower_floor": "329a5238ff5c"
+  }
+}

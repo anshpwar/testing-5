@@ -1,0 +1,20 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <title>Pulse</title>
+</head>
+<body>
+  <main id="timeline"></main>
+  <script type="module">
+    import { createClient } from "./api.js";
+    import { createApp } from "./app.js";
+
+    const handle = new URLSearchParams(location.search).get("as") || "guest";
+    const root = document.getElementById("timeline");
+    const app = createApp({ client: createClient({ handle }), root, nowIso: () => new Date().toISOString() });
+    root.addEventListener("click", app.handleClick);
+    app.load();
+  </script>
+</body>
+</html>

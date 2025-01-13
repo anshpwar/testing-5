@@ -1,0 +1,18 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <title>Timeline for @{{ profile.handle }}</title>
+</head>
+<body>
+  <h1>Timeline for @{{ profile.handle }}</h1>
+  <ol class="timeline">
+  {% for update in updates %}
+    {% include "feed/_update.html" %}
+  {% empty %}
+    <li class="empty">Nothing to show yet.</li>
+  {% endfor %}
+  </ol>
+  {% if next_cursor %}<a rel="next" href="?cursor={{ next_cursor }}">Older updates</a>{% endif %}
+</body>
+</html>

@@ -1,0 +1,7 @@
+{
+  "name": "pulse-frontend",
+  "version": "1.0.0",
+  "private": true,
+  "type": "module",
+  "description": "Plain ES modules for the Pulse timeline; tests run with node --test."
+}

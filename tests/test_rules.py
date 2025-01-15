@@ -35,11 +35,11 @@ class RuleTests(unittest.TestCase):
         self.assertEqual(rules.max_following(0), 500)
         self.assertEqual(rules.max_following(1), 500)
         self.assertEqual(rules.max_following(100), 500)
-        self.assertEqual(rules.max_following(101), 2000)
+        self.assertEqual(rules.max_following(101), 500)
         self.assertEqual(rules.max_following(1000), 2000)
-        self.assertEqual(rules.max_following(1001), 5000)
+        self.assertEqual(rules.max_following(1001), 2000)
         self.assertEqual(rules.max_following(10000), 5000)
-        self.assertEqual(rules.max_following(10001), 7500)
+        self.assertEqual(rules.max_following(10001), 5000)
 
     def test_post_length_limit(self):
         self.assertEqual(rules.post_length_limit(0), 140)

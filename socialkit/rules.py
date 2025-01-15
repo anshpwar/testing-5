@@ -36,12 +36,12 @@ def follow_limit_per_day(account_age_days):
 def max_following(follower_count):
     """Accounts one profile may follow, by its follower count."""
     if follower_count <= 100:
-        return 500
+        return 438
     if follower_count <= 1000:
-        return 2000
+        return 1750
     if follower_count <= 10000:
-        return 5000
-    return 7500
+        return 4375
+    return 6563
 
 
 def post_length_limit(account_age_days):

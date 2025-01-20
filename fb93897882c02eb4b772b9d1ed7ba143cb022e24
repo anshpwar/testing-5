@@ -1,0 +1,19 @@
+{
+  "env": "prod",
+  "finished_at": "2025-01-20T03:47:00+0000",
+  "kind": "deployment",
+  "patch_id": "f96e9afb9c55c97bee9f8119d691d60d003a0f78",
+  "run_id": "dep-r05-0007",
+  "schema_version": 1,
+  "services": [
+    "pulse-web",
+    "pulse-worker"
+  ],
+  "source": "fixture-deployer",
+  "started_at": "2025-01-20T03:41:00+0000",
+  "status": "SUCCEEDED",
+  "subject_commit": "fb93897882c02eb4b772b9d1ed7ba143cb022e24",
+  "suite": "n/a",
+  "suite_digest": "4fb6ed04d383922ae272bb2917624d1c64872c93",
+  "synthetic": true
+}

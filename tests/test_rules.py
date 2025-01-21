@@ -82,11 +82,11 @@ class RuleTests(unittest.TestCase):
         self.assertEqual(rules.freshness_window_hours(0), 24)
         self.assertEqual(rules.freshness_window_hours(1), 24)
         self.assertEqual(rules.freshness_window_hours(100), 24)
-        self.assertEqual(rules.freshness_window_hours(101), 48)
+        self.assertEqual(rules.freshness_window_hours(101), 24)
         self.assertEqual(rules.freshness_window_hours(1000), 48)
-        self.assertEqual(rules.freshness_window_hours(1001), 96)
+        self.assertEqual(rules.freshness_window_hours(1001), 48)
         self.assertEqual(rules.freshness_window_hours(10000), 96)
-        self.assertEqual(rules.freshness_window_hours(10001), 168)
+        self.assertEqual(rules.freshness_window_hours(10001), 96)
 
     def test_report_auto_hide_threshold(self):
         self.assertEqual(rules.report_auto_hide_threshold(0), 3)

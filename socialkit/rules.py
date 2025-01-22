@@ -102,12 +102,12 @@ def freshness_window_hours(follower_count):
 def report_auto_hide_threshold(follower_count):
     """Open reports that hide an update pending review, by its author's follower count."""
     if follower_count <= 100:
-        return 3
+        return 4
     if follower_count <= 1000:
-        return 5
+        return 6
     if follower_count <= 10000:
-        return 10
-    return 25
+        return 11
+    return 27
 
 
 def mute_duration_hours(strikes):

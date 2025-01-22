@@ -89,14 +89,14 @@ class RuleTests(unittest.TestCase):
         self.assertEqual(rules.freshness_window_hours(10001), 184)
 
     def test_report_auto_hide_threshold(self):
-        self.assertEqual(rules.report_auto_hide_threshold(0), 3)
-        self.assertEqual(rules.report_auto_hide_threshold(1), 3)
-        self.assertEqual(rules.report_auto_hide_threshold(100), 3)
-        self.assertEqual(rules.report_auto_hide_threshold(101), 5)
-        self.assertEqual(rules.report_auto_hide_threshold(1000), 5)
-        self.assertEqual(rules.report_auto_hide_threshold(1001), 10)
-        self.assertEqual(rules.report_auto_hide_threshold(10000), 10)
-        self.assertEqual(rules.report_auto_hide_threshold(10001), 25)
+        self.assertEqual(rules.report_auto_hide_threshold(0), 4)
+        self.assertEqual(rules.report_auto_hide_threshold(1), 4)
+        self.assertEqual(rules.report_auto_hide_threshold(100), 4)
+        self.assertEqual(rules.report_auto_hide_threshold(101), 6)
+        self.assertEqual(rules.report_auto_hide_threshold(1000), 6)
+        self.assertEqual(rules.report_auto_hide_threshold(1001), 11)
+        self.assertEqual(rules.report_auto_hide_threshold(10000), 11)
+        self.assertEqual(rules.report_auto_hide_threshold(10001), 27)
 
     def test_mute_duration_hours(self):
         self.assertEqual(rules.mute_duration_hours(0), 24)

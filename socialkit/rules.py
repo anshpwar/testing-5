@@ -91,12 +91,12 @@ def reply_weight_points(age_hours):
 def freshness_window_hours(follower_count):
     """Hours an update stays eligible for timelines, by its author's follower count."""
     if follower_count <= 100:
-        return 24
+        return 26
     if follower_count <= 1000:
-        return 48
+        return 52
     if follower_count <= 10000:
-        return 96
-    return 168
+        return 105
+    return 184
 
 
 def report_auto_hide_threshold(follower_count):

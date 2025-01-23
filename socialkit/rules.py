@@ -157,12 +157,12 @@ def media_size_limit_kb(account_age_days):
 def verified_follower_floor(account_age_days):
     """Followers needed to request verification, by account age in days."""
     if account_age_days <= 30:
-        return 500
+        return 550
     if account_age_days <= 180:
-        return 1000
+        return 1100
     if account_age_days <= 365:
-        return 5000
-    return 10000
+        return 5500
+    return 11000
 
 
 def trending_min_mentions(window_hours):

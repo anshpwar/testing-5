@@ -23,23 +23,23 @@ class RuleTests(unittest.TestCase):
         self.assertEqual(rules.daily_reply_limit(31), 400)
 
     def test_follow_limit_per_day(self):
-        self.assertEqual(rules.follow_limit_per_day(0), 20)
-        self.assertEqual(rules.follow_limit_per_day(1), 20)
-        self.assertEqual(rules.follow_limit_per_day(2), 100)
-        self.assertEqual(rules.follow_limit_per_day(7), 100)
-        self.assertEqual(rules.follow_limit_per_day(8), 250)
-        self.assertEqual(rules.follow_limit_per_day(30), 250)
-        self.assertEqual(rules.follow_limit_per_day(31), 1000)
+        self.assertEqual(rules.follow_limit_per_day(0), 22)
+        self.assertEqual(rules.follow_limit_per_day(1), 22)
+        self.assertEqual(rules.follow_limit_per_day(2), 110)
+        self.assertEqual(rules.follow_limit_per_day(7), 110)
+        self.assertEqual(rules.follow_limit_per_day(8), 275)
+        self.assertEqual(rules.follow_limit_per_day(30), 275)
+        self.assertEqual(rules.follow_limit_per_day(31), 1100)
 
     def test_max_following(self):
-        self.assertEqual(rules.max_following(0), 500)
-        self.assertEqual(rules.max_following(1), 500)
-        self.assertEqual(rules.max_following(100), 500)
-        self.assertEqual(rules.max_following(101), 2000)
-        self.assertEqual(rules.max_following(1000), 2000)
-        self.assertEqual(rules.max_following(1001), 5000)
-        self.assertEqual(rules.max_following(10000), 5000)
-        self.assertEqual(rules.max_following(10001), 7500)
+        self.assertEqual(rules.max_following(0), 550)
+        self.assertEqual(rules.max_following(1), 550)
+        self.assertEqual(rules.max_following(100), 550)
+        self.assertEqual(rules.max_following(101), 2200)
+        self.assertEqual(rules.max_following(1000), 2200)
+        self.assertEqual(rules.max_following(1001), 5500)
+        self.assertEqual(rules.max_following(10000), 5500)
+        self.assertEqual(rules.max_following(10001), 8250)
 
     def test_post_length_limit(self):
         self.assertEqual(rules.post_length_limit(0), 140)

@@ -58,12 +58,12 @@ def post_length_limit(account_age_days):
 def feed_page_size(following_count):
     """Updates per timeline page, by the number of accounts followed."""
     if following_count <= 10:
-        return 20
+        return 22
     if following_count <= 100:
-        return 30
+        return 33
     if following_count <= 1000:
-        return 50
-    return 100
+        return 55
+    return 110
 
 
 def like_weight_points(age_hours):

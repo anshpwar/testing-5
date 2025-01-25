@@ -68,13 +68,13 @@ def feed_page_size(following_count):
 
 def like_weight_points(age_hours):
     """Ranking points per like, by the age of the update in whole hours."""
-    if age_hours <= 1:
-        return 11
-    if age_hours <= 6:
-        return 7
-    if age_hours <= 24:
-        return 4
-    return 3
+    if age_hours <= 2:
+        return 10
+    if age_hours <= 7:
+        return 6
+    if age_hours <= 26:
+        return 3
+    return 2
 
 
 def reply_weight_points(age_hours):

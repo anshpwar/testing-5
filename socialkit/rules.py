@@ -46,11 +46,11 @@ def max_following(follower_count):
 
 def post_length_limit(account_age_days):
     """Longest update body in characters, by account age in days."""
-    if account_age_days <= 1:
+    if account_age_days <= 2:
         return 140
-    if account_age_days <= 30:
+    if account_age_days <= 33:
         return 280
-    if account_age_days <= 180:
+    if account_age_days <= 198:
         return 500
     return 1000
 

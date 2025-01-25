@@ -51,14 +51,14 @@ class RuleTests(unittest.TestCase):
         self.assertEqual(rules.post_length_limit(181), 500)
 
     def test_feed_page_size(self):
-        self.assertEqual(rules.feed_page_size(0), 20)
-        self.assertEqual(rules.feed_page_size(1), 20)
-        self.assertEqual(rules.feed_page_size(10), 20)
-        self.assertEqual(rules.feed_page_size(11), 30)
-        self.assertEqual(rules.feed_page_size(100), 30)
-        self.assertEqual(rules.feed_page_size(101), 50)
-        self.assertEqual(rules.feed_page_size(1000), 50)
-        self.assertEqual(rules.feed_page_size(1001), 100)
+        self.assertEqual(rules.feed_page_size(0), 22)
+        self.assertEqual(rules.feed_page_size(1), 22)
+        self.assertEqual(rules.feed_page_size(10), 22)
+        self.assertEqual(rules.feed_page_size(11), 33)
+        self.assertEqual(rules.feed_page_size(100), 33)
+        self.assertEqual(rules.feed_page_size(101), 55)
+        self.assertEqual(rules.feed_page_size(1000), 55)
+        self.assertEqual(rules.feed_page_size(1001), 110)
 
     def test_like_weight_points(self):
         self.assertEqual(rules.like_weight_points(0), 10)

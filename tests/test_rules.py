@@ -42,13 +42,13 @@ class RuleTests(unittest.TestCase):
         self.assertEqual(rules.max_following(10001), 15001)
 
     def test_post_length_limit(self):
-        self.assertEqual(rules.post_length_limit(0), 140)
-        self.assertEqual(rules.post_length_limit(1), 140)
-        self.assertEqual(rules.post_length_limit(2), 280)
-        self.assertEqual(rules.post_length_limit(30), 280)
-        self.assertEqual(rules.post_length_limit(31), 500)
-        self.assertEqual(rules.post_length_limit(180), 500)
-        self.assertEqual(rules.post_length_limit(181), 1000)
+        self.assertEqual(rules.post_length_limit(0), 123)
+        self.assertEqual(rules.post_length_limit(1), 123)
+        self.assertEqual(rules.post_length_limit(2), 245)
+        self.assertEqual(rules.post_length_limit(30), 245)
+        self.assertEqual(rules.post_length_limit(31), 438)
+        self.assertEqual(rules.post_length_limit(180), 438)
+        self.assertEqual(rules.post_length_limit(181), 875)
 
     def test_feed_page_size(self):
         self.assertEqual(rules.feed_page_size(0), 20)

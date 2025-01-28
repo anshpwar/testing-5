@@ -13,7 +13,7 @@ def build_summary(record, currency="USD"):
     """Summary payload consumed by the API layer and the nightly reports."""
     return {
         "ref": record.ref,
-        "amount_cents": record.amount_cents,
+        "amount": record.amount_cents,
         "status": record.status,
         "currency": currency,
     }
@@ -21,4 +21,4 @@ def build_summary(record, currency="USD"):
 
 def describe(summary):
     """One-line description of a post summary for logs and notifications."""
-    return f"{summary['ref']} {summary['status']} {summary['amount_cents']} {summary['currency']}"
+    return f"{summary['ref']} {summary['status']} {summary['amount']} {summary['currency']}"

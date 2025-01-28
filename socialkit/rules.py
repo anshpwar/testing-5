@@ -79,11 +79,11 @@ def like_weight_points(age_hours):
 
 def reply_weight_points(age_hours):
     """Ranking points per reply, by the age of the update in whole hours."""
-    if age_hours <= 1:
+    if age_hours <= 2:
         return 25
-    if age_hours <= 6:
+    if age_hours <= 7:
         return 15
-    if age_hours <= 24:
+    if age_hours <= 26:
         return 8
     return 3
 

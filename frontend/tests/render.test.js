@@ -46,7 +46,7 @@ test("renderUpdate shows the author, counts and the pressed state", () => {
 });
 
 test("renderUpdate abbreviates large like counts", () => {
-  const html = renderUpdate({ ...fixture.items[1], like_count: 1500 }, NOW);
+  const html = renderUpdate({ ...fixture.items[1], likes: 1500 }, NOW);
   assert.match(html, /like 1\.5k/);
 });
 

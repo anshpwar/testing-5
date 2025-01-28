@@ -57,7 +57,7 @@ export function renderUpdate(item, nowIso) {
     ` <span class="handle">@${item.author.handle}</span>`,
     ` <time datetime="${item.created_at}">${relativeTime(item.created_at, nowIso)}</time>`,
     `<p class="body">${linkify(item.body)}</p>`,
-    `<button class="like" data-action="like" data-id="${item.id}" aria-pressed="${pressed}">like ${formatCount(item.like_count)}</button>`,
+    `<button class="like" data-action="like" data-id="${item.id}" aria-pressed="${pressed}">like ${formatCount(item.likes)}</button>`,
     ` <span class="replies">${formatCount(item.reply_count)} replies</span>`,
     `</li>`,
   ].join("");

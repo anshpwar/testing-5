@@ -5,7 +5,7 @@
       "author": {"handle": "marisol", "display_name": "Marisol Vega", "verified": true},
       "body": "Trail report from #lakeside with @tobias_k <b>muddy</b> but open",
       "created_at": "2025-03-03T11:30:00+00:00",
-      "like_count": 4,
+      "likes": 4,
       "reply_count": 2,
       "liked": false
     },
@@ -14,7 +14,7 @@
       "author": {"handle": "tobias_k", "display_name": "Tobias Kern", "verified": false},
       "body": "Second coffee before the standup",
       "created_at": "2025-03-03T09:00:00+00:00",
-      "like_count": 12,
+      "likes": 12,
       "reply_count": 0,
       "liked": true
     },
@@ -23,7 +23,7 @@
       "author": {"handle": "marisol", "display_name": "Marisol Vega", "verified": true},
       "body": "Weekend plans: nothing",
       "created_at": "2025-03-01T08:00:00+00:00",
-      "like_count": 1,
+      "likes": 1,
       "reply_count": 1,
       "liked": false
     }

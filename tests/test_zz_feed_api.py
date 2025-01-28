@@ -44,7 +44,7 @@ class TimelineApiTests(FeedApiBase):
         self.assertEqual(item["author"], {"handle": "friend_a", "display_name": "Friend A", "verified": False})
         self.assertEqual(item["body"], "shape check")
         self.assertEqual(item["created_at"], update.created_at.isoformat())
-        self.assertEqual(item["like_count"], 3)
+        self.assertEqual(item["likes"], 3)
         self.assertEqual(item["reply_count"], 1)
         self.assertFalse(item["liked"])
         self.assertIsNone(body["next_cursor"])
@@ -108,11 +108,11 @@ class LikeApiTests(FeedApiBase):
     def test_like_and_unlike_round_trip(self):
         update = f.update(self.friend, "like me", ago_minutes=30)
         liked = self.send("post", f"/feed/{update.pk}/like/").json()
-        self.assertEqual((liked["like_count"], liked["liked"]), (1, True))
+        self.assertEqual((liked["likes"], liked["liked"]), (1, True))
         again = self.send("post", f"/feed/{update.pk}/like/").json()
-        self.assertEqual(again["like_count"], 1)
+        self.assertEqual(again["likes"], 1)
         unliked = self.send("delete", f"/feed/{update.pk}/like/").json()
-        self.assertEqual((unliked["like_count"], unliked["liked"]), (0, False))
+        self.assertEqual((unliked["likes"], unliked["liked"]), (0, False))
 
     def test_unknown_update_is_404_and_hidden_is_409(self):
         self.assertEqual(self.send("post", "/feed/9999/like/").status_code, 404)

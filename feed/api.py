@@ -22,7 +22,7 @@ def serialize_update(update, liked=False):
         },
         "body": update.body,
         "created_at": update.created_at.isoformat(),
-        "like_count": update.like_count,
+        "likes": update.like_count,
         "reply_count": update.reply_count,
         "liked": liked,
     }

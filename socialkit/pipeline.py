@@ -4,7 +4,7 @@ from .deps import textfmt
 
 
 def run_pipeline(records, currency="USD"):
-    retries = conf.get_setting("RETRY_LIMIT")
+    retries = conf.get_setting("MAX_RETRIES")
     lines = []
     for rec in records:
         summary = contract.build_summary(rec, currency)

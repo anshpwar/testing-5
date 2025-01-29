@@ -1,7 +1,7 @@
 """Runtime configuration lookups with explicit defaults."""
 
 DEFAULTS = {
-    "RETRY_LIMIT": 3,
+    "MAX_RETRIES": 3,
     "TIMEOUT_SECONDS": 30,
     "BATCH_SIZE": 100,
 }

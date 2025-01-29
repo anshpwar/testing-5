@@ -10,7 +10,7 @@ from . import services
 def timeline_context(profile, now, cursor=None):
     """Template context for a profile's timeline page."""
     page = services.timeline(profile, now, cursor)
-    return {"profile": profile, "updates": page.items, "next_cursor": page.next_cursor}
+    return {"profile": profile, "items": page.items, "next_cursor": page.next_cursor}
 
 
 @require_GET

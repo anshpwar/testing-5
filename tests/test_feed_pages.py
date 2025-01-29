@@ -28,7 +28,7 @@ class TimelinePageTests(TestCase):
     def test_context_carries_the_updates(self):
         first = f.update(self.friend, "one", ago_minutes=30)
         response = self.get()
-        self.assertEqual([u.pk for u in response.context["updates"]], [first.pk])
+        self.assertEqual([u.pk for u in response.context["items"]], [first.pk])
         self.assertEqual(response.context["profile"], self.viewer)
 
     def test_empty_timeline_has_a_message(self):
@@ -46,5 +46,5 @@ class TimelinePageTests(TestCase):
     def test_context_builder_is_usable_without_a_request(self):
         update = f.update(self.friend, "direct", ago_minutes=5)
         context = views.timeline_context(self.viewer, f.NOW)
-        self.assertEqual([u.pk for u in context["updates"]], [update.pk])
+        self.assertEqual([u.pk for u in context["items"]], [update.pk])
         self.assertIsNone(context["next_cursor"])

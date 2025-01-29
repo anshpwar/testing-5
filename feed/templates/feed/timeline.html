@@ -7,7 +7,7 @@
 <body>
   <h1>Timeline for @{{ profile.handle }}</h1>
   <ol class="timeline">
-  {% for update in updates %}
+  {% for update in items %}
     {% include "feed/_update.html" %}
   {% empty %}
     <li class="empty">Nothing to show yet.</li>

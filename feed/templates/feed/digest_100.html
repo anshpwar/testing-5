@@ -1,0 +1,7 @@
+<h1>Digest for @{{ profile.handle }}</h1>
+<p class="count">{{ updates|length }} updates</p>
+<ul>
+{% for update in updates %}
+  <li>{{ update.author.handle }}: {{ update.body|truncatechars:60 }}</li>
+{% endfor %}
+</ul>

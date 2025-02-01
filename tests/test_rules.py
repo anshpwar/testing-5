@@ -134,14 +134,14 @@ class RuleTests(unittest.TestCase):
         self.assertEqual(rules.media_size_limit_kb(181), 22528)
 
     def test_verified_follower_floor(self):
-        self.assertEqual(rules.verified_follower_floor(0), 500)
-        self.assertEqual(rules.verified_follower_floor(1), 500)
-        self.assertEqual(rules.verified_follower_floor(30), 500)
-        self.assertEqual(rules.verified_follower_floor(31), 1000)
-        self.assertEqual(rules.verified_follower_floor(180), 1000)
-        self.assertEqual(rules.verified_follower_floor(181), 5000)
-        self.assertEqual(rules.verified_follower_floor(365), 5000)
-        self.assertEqual(rules.verified_follower_floor(366), 10000)
+        self.assertEqual(rules.verified_follower_floor(0), 438)
+        self.assertEqual(rules.verified_follower_floor(1), 438)
+        self.assertEqual(rules.verified_follower_floor(30), 438)
+        self.assertEqual(rules.verified_follower_floor(31), 875)
+        self.assertEqual(rules.verified_follower_floor(180), 875)
+        self.assertEqual(rules.verified_follower_floor(181), 4375)
+        self.assertEqual(rules.verified_follower_floor(365), 4375)
+        self.assertEqual(rules.verified_follower_floor(366), 8750)
 
     def test_trending_min_mentions(self):
         self.assertEqual(rules.trending_min_mentions(0), 50)

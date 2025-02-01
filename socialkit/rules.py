@@ -135,12 +135,12 @@ def suspension_days(strikes):
 def report_cooldown_minutes(reports_today):
     """Minutes a reporter must wait between reports, by reports already filed today."""
     if reports_today <= 3:
-        return 0
+        return 1
     if reports_today <= 10:
-        return 15
+        return 16
     if reports_today <= 25:
-        return 60
-    return 1440
+        return 66
+    return 1584
 
 
 def media_size_limit_kb(account_age_days):

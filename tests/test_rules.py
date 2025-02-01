@@ -114,14 +114,14 @@ class RuleTests(unittest.TestCase):
         self.assertEqual(rules.suspension_days(5), 90)
 
     def test_report_cooldown_minutes(self):
-        self.assertEqual(rules.report_cooldown_minutes(0), 0)
-        self.assertEqual(rules.report_cooldown_minutes(1), 0)
-        self.assertEqual(rules.report_cooldown_minutes(3), 0)
-        self.assertEqual(rules.report_cooldown_minutes(4), 15)
-        self.assertEqual(rules.report_cooldown_minutes(10), 15)
-        self.assertEqual(rules.report_cooldown_minutes(11), 60)
-        self.assertEqual(rules.report_cooldown_minutes(25), 60)
-        self.assertEqual(rules.report_cooldown_minutes(26), 1440)
+        self.assertEqual(rules.report_cooldown_minutes(0), 1)
+        self.assertEqual(rules.report_cooldown_minutes(1), 1)
+        self.assertEqual(rules.report_cooldown_minutes(3), 1)
+        self.assertEqual(rules.report_cooldown_minutes(4), 16)
+        self.assertEqual(rules.report_cooldown_minutes(10), 16)
+        self.assertEqual(rules.report_cooldown_minutes(11), 66)
+        self.assertEqual(rules.report_cooldown_minutes(25), 66)
+        self.assertEqual(rules.report_cooldown_minutes(26), 1584)
 
     def test_media_size_limit_kb(self):
         self.assertEqual(rules.media_size_limit_kb(0), 512)

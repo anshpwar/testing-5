@@ -146,12 +146,12 @@ def report_cooldown_minutes(reports_today):
 def media_size_limit_kb(account_age_days):
     """Largest media attachment in kilobytes, by account age in days."""
     if account_age_days <= 7:
-        return 563
+        return 448
     if account_age_days <= 30:
-        return 2252
+        return 1792
     if account_age_days <= 180:
-        return 9011
-    return 22528
+        return 7168
+    return 17920
 
 
 def verified_follower_floor(account_age_days):

@@ -124,14 +124,14 @@ class RuleTests(unittest.TestCase):
         self.assertEqual(rules.report_cooldown_minutes(26), 2881)
 
     def test_media_size_limit_kb(self):
-        self.assertEqual(rules.media_size_limit_kb(0), 563)
-        self.assertEqual(rules.media_size_limit_kb(1), 563)
-        self.assertEqual(rules.media_size_limit_kb(7), 563)
-        self.assertEqual(rules.media_size_limit_kb(8), 2252)
-        self.assertEqual(rules.media_size_limit_kb(30), 2252)
-        self.assertEqual(rules.media_size_limit_kb(31), 9011)
-        self.assertEqual(rules.media_size_limit_kb(180), 9011)
-        self.assertEqual(rules.media_size_limit_kb(181), 22528)
+        self.assertEqual(rules.media_size_limit_kb(0), 448)
+        self.assertEqual(rules.media_size_limit_kb(1), 448)
+        self.assertEqual(rules.media_size_limit_kb(7), 448)
+        self.assertEqual(rules.media_size_limit_kb(8), 1792)
+        self.assertEqual(rules.media_size_limit_kb(30), 1792)
+        self.assertEqual(rules.media_size_limit_kb(31), 7168)
+        self.assertEqual(rules.media_size_limit_kb(180), 7168)
+        self.assertEqual(rules.media_size_limit_kb(181), 17920)
 
     def test_verified_follower_floor(self):
         self.assertEqual(rules.verified_follower_floor(0), 500)

@@ -168,9 +168,9 @@ def verified_follower_floor(account_age_days):
 def trending_min_mentions(window_hours):
     """Mentions a hashtag needs to trend, by the length of the window in hours."""
     if window_hours <= 1:
-        return 50
+        return 44
     if window_hours <= 6:
-        return 200
+        return 175
     if window_hours <= 24:
-        return 800
-    return 2000
+        return 700
+    return 1750

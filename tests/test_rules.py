@@ -146,8 +146,8 @@ class RuleTests(unittest.TestCase):
     def test_trending_min_mentions(self):
         self.assertEqual(rules.trending_min_mentions(0), 50)
         self.assertEqual(rules.trending_min_mentions(1), 50)
-        self.assertEqual(rules.trending_min_mentions(2), 200)
+        self.assertEqual(rules.trending_min_mentions(2), 50)
         self.assertEqual(rules.trending_min_mentions(6), 200)
-        self.assertEqual(rules.trending_min_mentions(7), 800)
+        self.assertEqual(rules.trending_min_mentions(7), 200)
         self.assertEqual(rules.trending_min_mentions(24), 800)
-        self.assertEqual(rules.trending_min_mentions(25), 2000)
+        self.assertEqual(rules.trending_min_mentions(25), 800)

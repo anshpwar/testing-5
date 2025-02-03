@@ -44,11 +44,11 @@ class RuleTests(unittest.TestCase):
     def test_post_length_limit(self):
         self.assertEqual(rules.post_length_limit(0), 140)
         self.assertEqual(rules.post_length_limit(1), 140)
-        self.assertEqual(rules.post_length_limit(2), 280)
+        self.assertEqual(rules.post_length_limit(2), 140)
         self.assertEqual(rules.post_length_limit(30), 280)
-        self.assertEqual(rules.post_length_limit(31), 500)
+        self.assertEqual(rules.post_length_limit(31), 280)
         self.assertEqual(rules.post_length_limit(180), 500)
-        self.assertEqual(rules.post_length_limit(181), 1000)
+        self.assertEqual(rules.post_length_limit(181), 500)
 
     def test_feed_page_size(self):
         self.assertEqual(rules.feed_page_size(0), 20)

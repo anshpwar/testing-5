@@ -25,11 +25,11 @@ class RuleTests(unittest.TestCase):
     def test_follow_limit_per_day(self):
         self.assertEqual(rules.follow_limit_per_day(0), 20)
         self.assertEqual(rules.follow_limit_per_day(1), 20)
-        self.assertEqual(rules.follow_limit_per_day(2), 100)
+        self.assertEqual(rules.follow_limit_per_day(2), 20)
         self.assertEqual(rules.follow_limit_per_day(7), 100)
-        self.assertEqual(rules.follow_limit_per_day(8), 250)
+        self.assertEqual(rules.follow_limit_per_day(8), 100)
         self.assertEqual(rules.follow_limit_per_day(30), 250)
-        self.assertEqual(rules.follow_limit_per_day(31), 1000)
+        self.assertEqual(rules.follow_limit_per_day(31), 250)
 
     def test_max_following(self):
         self.assertEqual(rules.max_following(0), 500)

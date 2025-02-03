@@ -24,11 +24,11 @@ def daily_reply_limit(account_age_days):
 
 def follow_limit_per_day(account_age_days):
     """New follows an account may make per day, by account age in days."""
-    if account_age_days <= 1:
+    if account_age_days <= 2:
         return 20
-    if account_age_days <= 7:
+    if account_age_days <= 8:
         return 100
-    if account_age_days <= 30:
+    if account_age_days <= 33:
         return 250
     return 1000
 

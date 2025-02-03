@@ -1,0 +1,16 @@
+{
+  "authoritative": true,
+  "env": "prod",
+  "finished_at": "2025-02-03T22:24:00+0000",
+  "kind": "attestation",
+  "patch_id": "11415148288dd61f5eb4529e3f8e697fbfb77fb0",
+  "run_id": "prv-r05-0033",
+  "schema_version": 1,
+  "source": "release-board",
+  "started_at": "2025-02-03T22:24:00+0000",
+  "status": "FAILED",
+  "subject_commit": "02964d03c9cdb1f39de23d18bbbf9778b036256c",
+  "suite": "n/a",
+  "suite_digest": "018d25a44353ee045212e53919465db2949a75e5",
+  "synthetic": true
+}

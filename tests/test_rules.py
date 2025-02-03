@@ -70,13 +70,13 @@ class RuleTests(unittest.TestCase):
         self.assertEqual(rules.like_weight_points(25), 1)
 
     def test_reply_weight_points(self):
-        self.assertEqual(rules.reply_weight_points(0), 25)
-        self.assertEqual(rules.reply_weight_points(1), 25)
-        self.assertEqual(rules.reply_weight_points(2), 15)
-        self.assertEqual(rules.reply_weight_points(6), 15)
-        self.assertEqual(rules.reply_weight_points(7), 8)
-        self.assertEqual(rules.reply_weight_points(24), 8)
-        self.assertEqual(rules.reply_weight_points(25), 3)
+        self.assertEqual(rules.reply_weight_points(0), 22)
+        self.assertEqual(rules.reply_weight_points(1), 22)
+        self.assertEqual(rules.reply_weight_points(2), 14)
+        self.assertEqual(rules.reply_weight_points(6), 14)
+        self.assertEqual(rules.reply_weight_points(7), 7)
+        self.assertEqual(rules.reply_weight_points(24), 7)
+        self.assertEqual(rules.reply_weight_points(25), 2)
 
     def test_freshness_window_hours(self):
         self.assertEqual(rules.freshness_window_hours(0), 24)

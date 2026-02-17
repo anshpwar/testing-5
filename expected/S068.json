@@ -1,0 +1,98 @@
+{
+  "scenario_id": "S068",
+  "repo_id": "testing-5",
+  "title": "Two branches change the same schedule and its test in different ways",
+  "difficulty": 3,
+  "primary_catalog_id": 68,
+  "catalog_ids": [
+    68
+  ],
+  "expected_git_outcome": "CONFLICT",
+  "merge_pair": {
+    "base": "scenario/S068/base",
+    "target": "scenario/S068/target",
+    "all_pairs": [
+      [
+        "scenario/S068/base",
+        "scenario/S068/target"
+      ],
+      [
+        "scenario/S068/base",
+        "scenario/S068/third"
+      ],
+      [
+        "scenario/S068/target",
+        "scenario/S068/third"
+      ]
+    ],
+    "additional_sides": {
+      "third": "scenario/S068/third"
+    }
+  },
+  "fork_commit": "1596e0533048a98252a3d49a0724b37ca9462576",
+  "expected_conflicted_files": [
+    "socialkit/rules.py",
+    "tests/test_rules.py"
+  ],
+  "validation_method": "merge",
+  "clone_profile": "full",
+  "branches": [
+    "scenario/S068/base",
+    "scenario/S068/target",
+    "scenario/S068/third"
+  ],
+  "original_commits": [
+    "18b447c7ba24412169d1c600342e1207ef290cbe"
+  ],
+  "derived_commits": [
+    "60e4e639eb3bcd4f38efcf0f3f24f8b4a6cd8515",
+    "fb66ae86a5785433af5883897f632201f3a7db18"
+  ],
+  "change_relationships": [
+    {
+      "a": "18b447c7ba24412169d1c600342e1207ef290cbe",
+      "b": "60e4e639eb3bcd4f38efcf0f3f24f8b4a6cd8515",
+      "relation": "unrelated"
+    },
+    {
+      "a": "18b447c7ba24412169d1c600342e1207ef290cbe",
+      "b": "fb66ae86a5785433af5883897f632201f3a7db18",
+      "relation": "unrelated"
+    }
+  ],
+  "files": [
+    "socialkit/rules.py",
+    "tests/test_rules.py"
+  ],
+  "regions": [
+    {
+      "file": "socialkit/rules.py",
+      "function": "feed_page_size"
+    }
+  ],
+  "testing_evidence": "none",
+  "deployment_evidence": "none",
+  "metadata_availability": "full",
+  "known_uncertainty": "none",
+  "expected_warnings": [
+    "3 developers changed the same schedule independently"
+  ],
+  "safe_resolution_constraints": [
+    "no side may be dropped silently"
+  ],
+  "human_review_required": true,
+  "assertions": [],
+  "id": "68",
+  "sub_entries": [],
+  "patch_ids": {
+    "@S068.x_base": "43d5299ca59030f6ac99e8f6703bd48331861911",
+    "@S068.x_target": "05bbd7091fe0b0702c34bf6060549e6a85ac79ce",
+    "@S068.x_third": "5c36cef8344527ad1d6ba64ec291ebc61e728144"
+  },
+  "commit_labels": {
+    "S068.F": "1596e0533048a98252a3d49a0724b37ca9462576",
+    "S068.x_base": "18b447c7ba24412169d1c600342e1207ef290cbe",
+    "S068.x_target": "60e4e639eb3bcd4f38efcf0f3f24f8b4a6cd8515",
+    "S068.x_third": "fb66ae86a5785433af5883897f632201f3a7db18"
+  }
+}

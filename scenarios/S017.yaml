@@ -1,0 +1,145 @@
+scenario_id: S017
+repo_id: testing-5
+title: Two reviewers tune the same schedule while other changes land around it
+difficulty: 4
+primary_catalog_id: 17
+catalog_ids:
+- 17
+- 20
+- 38
+expected_git_outcome: CONFLICT
+merge_pair:
+  base: scenario/S017/base
+  target: scenario/S017/target
+  all_pairs:
+  - - scenario/S017/base
+    - scenario/S017/target
+  additional_sides:
+    mid: scenario/S017/mid
+fork_commit: '@S017.F'
+expected_conflicted_files:
+- socialkit/rules.py
+- tests/test_rules.py
+validation_method: merge
+clone_profile: full
+branches:
+- scenario/S017/base
+- scenario/S017/mid
+- scenario/S017/target
+original_commits:
+- '@S017.t1'
+derived_commits:
+- '@S017.m1'
+- '@S017.b1'
+change_relationships:
+- a: '@S017.t1'
+  b: '@S017.m1'
+  relation: partial
+- a: '@S017.m1'
+  b: '@S017.b1'
+  relation: identical
+files:
+- socialkit/rules.py
+- tests/test_rules.py
+regions:
+- file: socialkit/rules.py
+  function: report_cooldown_minutes
+testing_evidence: original t1 PASSED; deployed b1 differs from t1 and has no record
+deployment_evidence: b1 (modified backport) deployed to prod
+metadata_availability: b1 trailer names m1 only; t1 is reachable through m1's trailer
+known_uncertainty: true origin recoverable only by patch-id
+expected_warnings:
+- backport of a modified backport; origin chain has two hops
+safe_resolution_constraints: []
+human_review_required: false
+assertions:
+- type: trailer
+  commit: '@S017.b1'
+  expect: valid
+  origin: '@S017.m1'
+- type: trailer
+  commit: '@S017.m1'
+  expect: valid
+  origin: '@S017.t1'
+id: '17'
+sub_entries:
+- original_commits:
+  - '@S017.c20_t1'
+  derived_commits:
+  - '@S017.c20_b1'
+  change_relationships:
+  - a: '@S017.c20_t1'
+    b: '@S017.c20_b1'
+    relation: identical
+  files:
+  - socialkit/rules.py
+  - tests/test_rules.py
+  regions:
+  - file: socialkit/rules.py
+    function: media_size_limit_kb
+  testing_evidence: none
+  deployment_evidence: none
+  metadata_availability: trailer and provenance note both name the wrong origin commit
+  known_uncertainty: true origin recoverable only by patch-id
+  expected_warnings:
+  - cherry-pick trailer does not point at the real origin
+  safe_resolution_constraints: []
+  human_review_required: false
+  assertions:
+  - type: patch_id_equal
+    a: '@S017.c20_t1'
+    b: '@S017.c20_b1'
+  - type: trailer
+    commit: '@S017.c20_b1'
+    expect: invalid
+    origin: '@S017.c20_t1'
+  - type: note
+    ref: provenance
+    commit: '@S017.c20_b1'
+    expect: present
+  id: 17.a
+  catalog_id: 20
+- original_commits:
+  - '@S017.c38_t1'
+  derived_commits:
+  - '@S017.c38_b1'
+  change_relationships:
+  - a: '@S017.c38_t1'
+    b: '@S017.c38_b1'
+    relation: partial
+  files:
+  - socialkit/rules.py
+  - tests/test_rules.py
+  regions:
+  - file: socialkit/rules.py
+    function: trending_min_mentions
+  testing_evidence: original t1 PASSED; deployed b1 differs from t1 and has no record
+  deployment_evidence: b1 (modified backport) deployed to prod
+  metadata_availability: full
+  known_uncertainty: none
+  expected_warnings:
+  - deployed code differs from the tested commit
+  safe_resolution_constraints: []
+  human_review_required: false
+  assertions:
+  - type: patch_id_differs
+    a: '@S017.c38_t1'
+    b: '@S017.c38_b1'
+  - type: note
+    ref: deploy
+    commit: '@S017.c38_b1'
+    expect: present
+  - type: note
+    ref: ci
+    commit: '@S017.c38_b1'
+    expect: absent
+  id: 17.b
+  catalog_id: 38
+patch_ids:
+  '@S017.t1': d5e9d75f8ebfbab2bea86bc68f1b88485d704677
+  '@S017.m1': 8737c8ff782a484a417b36983fb63551a5a0de2d
+  '@S017.b1': 8737c8ff782a484a417b36983fb63551a5a0de2d
+  '@S017.c20_t1': 101b9a3e952a8760243e9e1309cc9adcd06c0298
+  '@S017.c20_b1': 222279cf647588679b35320fcb12265631f20037
+  '@S017.c38_t1': 5c648d3457622611dd64543b4cc7a0b116a40b70
+  '@S017.c38_b1': aad3a1700353407f08b5a9e51abe1b3a3ae9db94

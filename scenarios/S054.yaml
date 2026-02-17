@@ -1,0 +1,73 @@
+scenario_id: S054
+repo_id: testing-5
+title: A rule is edited concurrently with differently shaped code
+difficulty: 3
+primary_catalog_id: 54
+catalog_ids:
+- 54
+expected_git_outcome: CONFLICT
+merge_pair:
+  base: scenario/S054/base
+  target: scenario/S054/target
+  all_pairs:
+  - - scenario/S054/base
+    - scenario/S054/target
+  additional_sides:
+    feature: scenario/S054/feature
+fork_commit: '@S054.F'
+expected_conflicted_files:
+- socialkit/rules.py
+- tests/test_rules.py
+validation_method: merge
+clone_profile: full
+branches:
+- scenario/S054/base
+- scenario/S054/feature
+- scenario/S054/target
+original_commits:
+- '@S054.f1'
+- '@S054.f2'
+derived_commits:
+- '@S054.sq'
+change_relationships:
+- a: '@S054.f1'
+  b: '@S054.sq'
+  relation: combined
+- a: '@S054.f2'
+  b: '@S054.sq'
+  relation: combined
+files:
+- socialkit/rules.py
+- tests/test_rules.py
+regions:
+- file: socialkit/rules.py
+  function: freshness_window_hours
+- file: socialkit/rules.py
+  function: report_auto_hide_threshold
+testing_evidence: ci PASSED on feature tip f2; squash commit sq has no record
+deployment_evidence: none
+metadata_availability: feature side published as tag scenario/S054/feature
+known_uncertainty: none
+expected_warnings:
+- squash merge dissolves per-commit lineage
+safe_resolution_constraints: []
+human_review_required: false
+assertions:
+- type: parents
+  commit: '@S054.sq'
+  count: 1
+- type: ancestor
+  a: '@S054.f2'
+  b: '@S054.sq'
+  expect: false
+- type: diff_subset
+  small:
+  - '@S054.f1'
+  - '@S054.f2'
+  big: '@S054.sq'
+id: '54'
+sub_entries: []
+patch_ids:
+  '@S054.f1': 0171b12fbdbe3ab13ef2eade913e53bbedca94b4
+  '@S054.f2': c435f1de92fe381327527c71e0a1660a4f12a883
+  '@S054.sq': 4ae9de0b8cee3b24bd300f66ccdf4817af2ce2ad

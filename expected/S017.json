@@ -1,0 +1,229 @@
+{
+  "scenario_id": "S017",
+  "repo_id": "testing-5",
+  "title": "Two reviewers tune the same schedule while other changes land around it",
+  "difficulty": 4,
+  "primary_catalog_id": 17,
+  "catalog_ids": [
+    17,
+    20,
+    38
+  ],
+  "expected_git_outcome": "CONFLICT",
+  "merge_pair": {
+    "base": "scenario/S017/base",
+    "target": "scenario/S017/target",
+    "all_pairs": [
+      [
+        "scenario/S017/base",
+        "scenario/S017/target"
+      ]
+    ],
+    "additional_sides": {
+      "mid": "scenario/S017/mid"
+    }
+  },
+  "fork_commit": "1596e0533048a98252a3d49a0724b37ca9462576",
+  "expected_conflicted_files": [
+    "socialkit/rules.py",
+    "tests/test_rules.py"
+  ],
+  "validation_method": "merge",
+  "clone_profile": "full",
+  "branches": [
+    "scenario/S017/base",
+    "scenario/S017/mid",
+    "scenario/S017/target"
+  ],
+  "original_commits": [
+    "1f8772a519fdbb5422160c97b720431f894a8869"
+  ],
+  "derived_commits": [
+    "467056bffc8d79fdf9aeac522b2e77db456b6b2e",
+    "57719269ed0af3065955b64d560591e278f3f795"
+  ],
+  "change_relationships": [
+    {
+      "a": "1f8772a519fdbb5422160c97b720431f894a8869",
+      "b": "467056bffc8d79fdf9aeac522b2e77db456b6b2e",
+      "relation": "partial"
+    },
+    {
+      "a": "467056bffc8d79fdf9aeac522b2e77db456b6b2e",
+      "b": "57719269ed0af3065955b64d560591e278f3f795",
+      "relation": "identical"
+    }
+  ],
+  "files": [
+    "socialkit/rules.py",
+    "tests/test_rules.py"
+  ],
+  "regions": [
+    {
+      "file": "socialkit/rules.py",
+      "function": "report_cooldown_minutes"
+    }
+  ],
+  "testing_evidence": "original t1 PASSED; deployed b1 differs from t1 and has no record",
+  "deployment_evidence": "b1 (modified backport) deployed to prod",
+  "metadata_availability": "b1 trailer names m1 only; t1 is reachable through m1's trailer",
+  "known_uncertainty": "true origin recoverable only by patch-id",
+  "expected_warnings": [
+    "backport of a modified backport; origin chain has two hops"
+  ],
+  "safe_resolution_constraints": [],
+  "human_review_required": false,
+  "assertions": [
+    {
+      "type": "trailer",
+      "commit": "57719269ed0af3065955b64d560591e278f3f795",
+      "expect": "valid",
+      "origin": "467056bffc8d79fdf9aeac522b2e77db456b6b2e"
+    },
+    {
+      "type": "trailer",
+      "commit": "467056bffc8d79fdf9aeac522b2e77db456b6b2e",
+      "expect": "valid",
+      "origin": "1f8772a519fdbb5422160c97b720431f894a8869"
+    }
+  ],
+  "id": "17",
+  "sub_entries": [
+    {
+      "original_commits": [
+        "38e155ffb5d828be75365f8421b29c41f490e9f1"
+      ],
+      "derived_commits": [
+        "4b027ab4f84c265e0d3daef628006531534a39fa"
+      ],
+      "change_relationships": [
+        {
+          "a": "38e155ffb5d828be75365f8421b29c41f490e9f1",
+          "b": "4b027ab4f84c265e0d3daef628006531534a39fa",
+          "relation": "identical"
+        }
+      ],
+      "files": [
+        "socialkit/rules.py",
+        "tests/test_rules.py"
+      ],
+      "regions": [
+        {
+          "file": "socialkit/rules.py",
+          "function": "media_size_limit_kb"
+        }
+      ],
+      "testing_evidence": "none",
+      "deployment_evidence": "none",
+      "metadata_availability": "trailer and provenance note both name the wrong origin commit",
+      "known_uncertainty": "true origin recoverable only by patch-id",
+      "expected_warnings": [
+        "cherry-pick trailer does not point at the real origin"
+      ],
+      "safe_resolution_constraints": [],
+      "human_review_required": false,
+      "assertions": [
+        {
+          "type": "patch_id_equal",
+          "a": "38e155ffb5d828be75365f8421b29c41f490e9f1",
+          "b": "4b027ab4f84c265e0d3daef628006531534a39fa"
+        },
+        {
+          "type": "trailer",
+          "commit": "4b027ab4f84c265e0d3daef628006531534a39fa",
+          "expect": "invalid",
+          "origin": "38e155ffb5d828be75365f8421b29c41f490e9f1"
+        },
+        {
+          "type": "note",
+          "ref": "provenance",
+          "commit": "4b027ab4f84c265e0d3daef628006531534a39fa",
+          "expect": "present"
+        }
+      ],
+      "id": "17.a",
+      "catalog_id": 20
+    },
+    {
+      "original_commits": [
+        "a7a0c116de7adfda8e97263dd7c8742dcc2d38dd"
+      ],
+      "derived_commits": [
+        "d29e29c026c65ddae117f9ca71aac11fc5fe7599"
+      ],
+      "change_relationships": [
+        {
+          "a": "a7a0c116de7adfda8e97263dd7c8742dcc2d38dd",
+          "b": "d29e29c026c65ddae117f9ca71aac11fc5fe7599",
+          "relation": "partial"
+        }
+      ],
+      "files": [
+        "socialkit/rules.py",
+        "tests/test_rules.py"
+      ],
+      "regions": [
+        {
+          "file": "socialkit/rules.py",
+          "function": "trending_min_mentions"
+        }
+      ],
+      "testing_evidence": "original t1 PASSED; deployed b1 differs from t1 and has no record",
+      "deployment_evidence": "b1 (modified backport) deployed to prod",
+      "metadata_availability": "full",
+      "known_uncertainty": "none",
+      "expected_warnings": [
+        "deployed code differs from the tested commit"
+      ],
+      "safe_resolution_constraints": [],
+      "human_review_required": false,
+      "assertions": [
+        {
+          "type": "patch_id_differs",
+          "a": "a7a0c116de7adfda8e97263dd7c8742dcc2d38dd",
+          "b": "d29e29c026c65ddae117f9ca71aac11fc5fe7599"
+        },
+        {
+          "type": "note",
+          "ref": "deploy",
+          "commit": "d29e29c026c65ddae117f9ca71aac11fc5fe7599",
+          "expect": "present"
+        },
+        {
+          "type": "note",
+          "ref": "ci",
+          "commit": "d29e29c026c65ddae117f9ca71aac11fc5fe7599",
+          "expect": "absent"
+        }
+      ],
+      "id": "17.b",
+      "catalog_id": 38
+    }
+  ],
+  "patch_ids": {
+    "@S017.t1": "d5e9d75f8ebfbab2bea86bc68f1b88485d704677",
+    "@S017.m1": "8737c8ff782a484a417b36983fb63551a5a0de2d",
+    "@S017.b1": "8737c8ff782a484a417b36983fb63551a5a0de2d",
+    "@S017.c20_t1": "101b9a3e952a8760243e9e1309cc9adcd06c0298",
+    "@S017.c20_b1": "222279cf647588679b35320fcb12265631f20037",
+    "@S017.c38_t1": "5c648d3457622611dd64543b4cc7a0b116a40b70",
+    "@S017.c38_b1": "aad3a1700353407f08b5a9e51abe1b3a3ae9db94"
+  },
+  "commit_labels": {
+    "S017.F": "1596e0533048a98252a3d49a0724b37ca9462576",
+    "S017.b1": "57719269ed0af3065955b64d560591e278f3f795",
+    "S017.c20_b0": "094565ae5a73b379657e766818ea1a5d9052c673",
+    "S017.c20_b1": "4b027ab4f84c265e0d3daef628006531534a39fa",
+    "S017.c20_b2": "a238881176a797fdbcbc480a02119d8dea0cc5ac",
+    "S017.c20_t1": "38e155ffb5d828be75365f8421b29c41f490e9f1",
+    "S017.c20_t2": "bef96f739eb4ab5df8d088ceb1a3c2a6f04bbd78",
+    "S017.c20_u1": "4316f884a5c68e13a0cad8c98bc7063b21127acc",
+    "S017.c38_b0": "eafabb09018850f273e0c5d345f18189b407e75c",
+    "S017.c38_b1": "d29e29c026c65ddae117f9ca71aac11fc5fe7599",
+    "S017.c38_t1": "a7a0c116de7adfda8e97263dd7c8742dcc2d38dd",
+    "S017.c38_t2": "a976794026476b88f93fb89c6bf82d23fcd1abd6",
+    "S017.m1": "467056bffc8d79fdf9aeac522b2e77db456b6b2e",
+    "S017.t1": "1f8772a519fdbb5422160c97b720431f894a8869",
+    "S017.t2": "c3ff3e176438891000c0d8151dbfd47fa9910434"
+  }
+}

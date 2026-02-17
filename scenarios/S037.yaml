@@ -1,0 +1,60 @@
+scenario_id: S037
+repo_id: testing-5
+title: A deployment record names a commit whose tests were never recorded
+difficulty: 1
+primary_catalog_id: 37
+catalog_ids:
+- 37
+expected_git_outcome: EVIDENCE_ONLY
+merge_pair:
+  base: scenario/S037/base
+  target: scenario/S037/target
+  all_pairs:
+  - - scenario/S037/base
+    - scenario/S037/target
+  additional_sides: {}
+fork_commit: '@S037.F'
+expected_conflicted_files: []
+validation_method: merge
+clone_profile: full
+branches:
+- scenario/S037/base
+- scenario/S037/target
+original_commits:
+- '@S037.t1'
+derived_commits:
+- '@S037.b1'
+change_relationships:
+- a: '@S037.t1'
+  b: '@S037.b1'
+  relation: unrelated
+files:
+- socialkit/rules.py
+- tests/test_rules.py
+regions:
+- file: socialkit/rules.py
+  function: max_following
+testing_evidence: t1 PASSED in uat
+deployment_evidence: never deployed to prod
+metadata_availability: full
+known_uncertainty: none
+expected_warnings:
+- uat-tested change is not in production
+safe_resolution_constraints: []
+human_review_required: false
+assertions:
+- type: note
+  ref: deploy
+  commit: '@S037.t1'
+  expect: absent
+- type: note
+  ref: ci
+  commit: '@S037.t1'
+  expect: present
+  fields:
+    env: uat
+id: '37'
+sub_entries: []
+patch_ids:
+  '@S037.t1': fa6684354e1079986b148a850d74f8ccb352bccb
+  '@S037.b1': 58e55bb17a581ab1af8ce176dd8af233dceaab5e

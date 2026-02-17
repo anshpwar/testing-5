@@ -1,0 +1,126 @@
+scenario_id: S077
+repo_id: testing-5
+title: A JSON field is renamed while a new frontend module keeps reading the old name
+difficulty: 4
+primary_catalog_id: 77
+catalog_ids:
+- 77
+- 83
+- 24
+expected_git_outcome: CLEAN_BUT_BROKEN
+merge_pair:
+  base: scenario/S077/base
+  target: scenario/S077/target
+  all_pairs:
+  - - scenario/S077/base
+    - scenario/S077/target
+  additional_sides: {}
+fork_commit: '@S077.F'
+expected_conflicted_files: []
+validation_method: merge
+clone_profile: full
+branches:
+- scenario/S077/base
+- scenario/S077/target
+original_commits:
+- '@S077.k77b'
+derived_commits:
+- '@S077.k77t'
+change_relationships:
+- a: '@S077.k77b'
+  b: '@S077.k77t'
+  relation: unrelated
+files:
+- feed/api.py
+- frontend/render.js
+- frontend/tests/fixtures/timeline.json
+- frontend/consumer_77.js
+regions:
+- file: feed/api.py
+  function: serialize_update
+testing_evidence: 'b2: unit PASSED, integration FAILED (record status FAILED with suite_results)'
+deployment_evidence: none
+metadata_availability: full
+known_uncertainty: none
+expected_warnings:
+- clean merge; the new frontend module still reads the old JSON field name and sums undefined
+safe_resolution_constraints:
+- Git cannot detect this; only the js suite can
+human_review_required: false
+assertions:
+- type: merge_then_tests
+  expect: fail
+  suites:
+  - js
+id: '77'
+sub_entries:
+- original_commits:
+  - '@S077.c83_k83b'
+  derived_commits:
+  - '@S077.c83_k83t'
+  change_relationships:
+  - a: '@S077.c83_k83b'
+    b: '@S077.c83_k83t'
+    relation: unrelated
+  files:
+  - socialkit/contract.py
+  - socialkit/consumer_83.py
+  regions:
+  - file: socialkit/contract.py
+    function: build_summary
+  testing_evidence: none
+  deployment_evidence: none
+  metadata_availability: full
+  known_uncertainty: none
+  expected_warnings:
+  - clean textual merge; the integrated code fails (new consumer reads the renamed key)
+  safe_resolution_constraints:
+  - Git cannot detect this; only the test run can
+  human_review_required: false
+  assertions:
+  - type: merge_then_tests
+    expect: fail
+    suites:
+    - unit
+  id: 77.a
+  catalog_id: 83
+- original_commits:
+  - '@S077.c24_b2'
+  derived_commits:
+  - '@S077.c24_b1'
+  change_relationships:
+  - a: '@S077.c24_b1'
+    b: '@S077.c24_b2'
+    relation: unrelated
+  files:
+  - socialkit/rules.py
+  - tests/test_rules.py
+  regions:
+  - file: socialkit/rules.py
+    function: reply_weight_points
+  testing_evidence: 'b2: unit PASSED, integration FAILED (record status FAILED with suite_results)'
+  deployment_evidence: none
+  metadata_availability: full
+  known_uncertainty: none
+  expected_warnings:
+  - unit suite alone is not sufficient evidence
+  safe_resolution_constraints: []
+  human_review_required: false
+  assertions:
+  - type: real_tests
+    commit: '@S077.c24_b2'
+    suite: unit
+    expect: passed
+  - type: real_tests
+    commit: '@S077.c24_b2'
+    suite: integration
+    expect: failed
+  id: 77.b
+  catalog_id: 24
+patch_ids:
+  '@S077.k77b': 2130bc3e655dd4e044b8bcf66d27d5cedc6fb9fa
+  '@S077.k77t': 6c40c63d8dda264f8703e3e75a536a40e3456fd1
+  '@S077.c83_k83b': 38c8867aa9404b83742f8181234654be9a633c02
+  '@S077.c83_k83t': 7c48ddcdd2196d6cca1e66ce5a772426989781dd
+  '@S077.c24_b2': 7131b5f54cd9974059165b930b131eafe9d28dca
+  '@S077.c24_b1': 16a3d8b6538faab4f77364a66dd7cdb41df1ce99

@@ -1,0 +1,217 @@
+{
+  "scenario_id": "S027",
+  "repo_id": "testing-5",
+  "title": "Evidence notes disagree about one commit inside a busy history",
+  "difficulty": 4,
+  "primary_catalog_id": 27,
+  "catalog_ids": [
+    27,
+    56,
+    35
+  ],
+  "expected_git_outcome": "CONFLICT",
+  "merge_pair": {
+    "base": "scenario/S027/base",
+    "target": "scenario/S027/target",
+    "all_pairs": [
+      [
+        "scenario/S027/base",
+        "scenario/S027/target"
+      ]
+    ],
+    "additional_sides": {}
+  },
+  "fork_commit": "1596e0533048a98252a3d49a0724b37ca9462576",
+  "expected_conflicted_files": [
+    "socialkit/rules.py",
+    "tests/test_rules.py"
+  ],
+  "validation_method": "merge",
+  "clone_profile": "full",
+  "branches": [
+    "scenario/S027/base",
+    "scenario/S027/target"
+  ],
+  "original_commits": [
+    "83f63eb7dd9a34bc5d064dd31c4e5bcef841dada"
+  ],
+  "derived_commits": [
+    "9f72758b43f85839244b98982e556c3a53c0247d"
+  ],
+  "change_relationships": [
+    {
+      "a": "83f63eb7dd9a34bc5d064dd31c4e5bcef841dada",
+      "b": "9f72758b43f85839244b98982e556c3a53c0247d",
+      "relation": "unrelated"
+    }
+  ],
+  "files": [
+    "socialkit/rules.py",
+    "tests/test_rules.py"
+  ],
+  "regions": [
+    {
+      "file": "socialkit/rules.py",
+      "function": "post_length_limit"
+    }
+  ],
+  "testing_evidence": "record stored on t2 describes t1; t1 itself has no record",
+  "deployment_evidence": "none",
+  "metadata_availability": "misattached record",
+  "known_uncertainty": "none",
+  "expected_warnings": [
+    "note attached to a commit whose subject_commit names another commit"
+  ],
+  "safe_resolution_constraints": [],
+  "human_review_required": false,
+  "assertions": [
+    {
+      "type": "note_subject_mismatch",
+      "ref": "ci",
+      "commit": "9f72758b43f85839244b98982e556c3a53c0247d",
+      "subject": "83f63eb7dd9a34bc5d064dd31c4e5bcef841dada"
+    },
+    {
+      "type": "note",
+      "ref": "ci",
+      "commit": "83f63eb7dd9a34bc5d064dd31c4e5bcef841dada",
+      "expect": "absent"
+    }
+  ],
+  "id": "27",
+  "sub_entries": [
+    {
+      "original_commits": [
+        "6b50bead6bc1fe849fac478b843162328e101a11"
+      ],
+      "derived_commits": [
+        "52f8ce3d668cd9902569b08e12b3d226de197dd1"
+      ],
+      "change_relationships": [
+        {
+          "a": "6b50bead6bc1fe849fac478b843162328e101a11",
+          "b": "52f8ce3d668cd9902569b08e12b3d226de197dd1",
+          "relation": "partial"
+        }
+      ],
+      "files": [
+        "socialkit/rules.py",
+        "tests/test_rules.py"
+      ],
+      "regions": [
+        {
+          "file": "socialkit/rules.py",
+          "function": "max_following"
+        }
+      ],
+      "testing_evidence": "ci PASSED belongs to pre-amend c1; amended c2 never tested",
+      "deployment_evidence": "none",
+      "metadata_availability": "full",
+      "known_uncertainty": "none",
+      "expected_warnings": [
+        "commit was amended after its test run"
+      ],
+      "safe_resolution_constraints": [],
+      "human_review_required": false,
+      "assertions": [
+        {
+          "type": "commit_differs",
+          "a": "6b50bead6bc1fe849fac478b843162328e101a11",
+          "b": "52f8ce3d668cd9902569b08e12b3d226de197dd1"
+        },
+        {
+          "type": "patch_id_differs",
+          "a": "6b50bead6bc1fe849fac478b843162328e101a11",
+          "b": "52f8ce3d668cd9902569b08e12b3d226de197dd1"
+        },
+        {
+          "type": "note",
+          "ref": "ci",
+          "commit": "52f8ce3d668cd9902569b08e12b3d226de197dd1",
+          "expect": "absent"
+        },
+        {
+          "type": "note",
+          "ref": "ci",
+          "commit": "6b50bead6bc1fe849fac478b843162328e101a11",
+          "expect": "present",
+          "fields": {
+            "status": "PASSED"
+          }
+        }
+      ],
+      "id": "27.a",
+      "catalog_id": 56
+    },
+    {
+      "original_commits": [
+        "bc27dbda2759b2e63496c60c151cf006ac3af2e7"
+      ],
+      "derived_commits": [
+        "1a0e5d475fa1b310c4002e5873c9aaa8cd884366"
+      ],
+      "change_relationships": [
+        {
+          "a": "bc27dbda2759b2e63496c60c151cf006ac3af2e7",
+          "b": "1a0e5d475fa1b310c4002e5873c9aaa8cd884366",
+          "relation": "partial"
+        }
+      ],
+      "files": [
+        "socialkit/rules.py",
+        "tests/test_rules.py"
+      ],
+      "regions": [
+        {
+          "file": "socialkit/rules.py",
+          "function": "like_weight_points"
+        }
+      ],
+      "testing_evidence": "parent p PASSED; child t1 never tested and changes the same rule",
+      "deployment_evidence": "none",
+      "metadata_availability": "full",
+      "known_uncertainty": "none",
+      "expected_warnings": [
+        "ancestor evidence does not cover the modified code"
+      ],
+      "safe_resolution_constraints": [],
+      "human_review_required": false,
+      "assertions": [
+        {
+          "type": "note",
+          "ref": "ci",
+          "commit": "1a0e5d475fa1b310c4002e5873c9aaa8cd884366",
+          "expect": "absent"
+        },
+        {
+          "type": "ancestor",
+          "a": "bc27dbda2759b2e63496c60c151cf006ac3af2e7",
+          "b": "1a0e5d475fa1b310c4002e5873c9aaa8cd884366",
+          "expect": true
+        }
+      ],
+      "id": "27.b",
+      "catalog_id": 35
+    }
+  ],
+  "patch_ids": {
+    "@S027.t1": "c749d680ad65d45baebb4cbf84b0162fe537feab",
+    "@S027.t2": "41ed3c8589f87881f33fc16434e10aa4268493d6",
+    "@S027.c56_c1": "b5573e738e130b346499ea07dd0451fa2ce258c4",
+    "@S027.c56_c2": "24f2d9a73cf77ad15219b21ddbfce0b7fc179695",
+    "@S027.c35_p": "18defd36483d4038d98b9a11aa8b8edc2ef74aae",
+    "@S027.c35_t1": "f6d84355a01983f63b7bb39d23876299bd5065a5"
+  },
+  "commit_labels": {
+    "S027.F": "1596e0533048a98252a3d49a0724b37ca9462576",
+    "S027.b1": "65e22c86a1241929f7632d6f3faf5437322ce93c",
+    "S027.c35_b1": "d9a48651702b794f1518fa45dd00cfbf5465f8aa",
+    "S027.c35_p": "bc27dbda2759b2e63496c60c151cf006ac3af2e7",
+    "S027.c35_t1": "1a0e5d475fa1b310c4002e5873c9aaa8cd884366",
+    "S027.c56_c1": "6b50bead6bc1fe849fac478b843162328e101a11",
+    "S027.c56_c2": "52f8ce3d668cd9902569b08e12b3d226de197dd1",
+    "S027.c56_t1": "2c24cc5e7670428ed3aa1f8577e10af27a4a7902",
+    "S027.t1": "83f63eb7dd9a34bc5d064dd31c4e5bcef841dada",
+    "S027.t2": "9f72758b43f85839244b98982e556c3a53c0247d"
+  }
+}

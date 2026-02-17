@@ -1,0 +1,238 @@
+{
+  "scenario_id": "S006",
+  "repo_id": "testing-5",
+  "title": "Concurrent edits to one schedule inside a history with extra noise",
+  "difficulty": 4,
+  "primary_catalog_id": 6,
+  "catalog_ids": [
+    6,
+    19,
+    20
+  ],
+  "expected_git_outcome": "CONFLICT",
+  "merge_pair": {
+    "base": "scenario/S006/base",
+    "target": "scenario/S006/target",
+    "all_pairs": [
+      [
+        "scenario/S006/base",
+        "scenario/S006/target"
+      ]
+    ],
+    "additional_sides": {}
+  },
+  "fork_commit": "1596e0533048a98252a3d49a0724b37ca9462576",
+  "expected_conflicted_files": [
+    "socialkit/rules.py",
+    "tests/test_rules.py"
+  ],
+  "validation_method": "merge",
+  "clone_profile": "full",
+  "branches": [
+    "scenario/S006/base",
+    "scenario/S006/target"
+  ],
+  "original_commits": [
+    "4ef9bacca05ba54456dd37156531857e873c1104"
+  ],
+  "derived_commits": [
+    "7f048a6faaec772dfeaf2df88bdda71ea96a01db",
+    "9640ecce0b7c99a78379a28726eef928ae4d0ab6"
+  ],
+  "change_relationships": [
+    {
+      "a": "4ef9bacca05ba54456dd37156531857e873c1104",
+      "b": "7f048a6faaec772dfeaf2df88bdda71ea96a01db",
+      "relation": "split"
+    },
+    {
+      "a": "4ef9bacca05ba54456dd37156531857e873c1104",
+      "b": "9640ecce0b7c99a78379a28726eef928ae4d0ab6",
+      "relation": "split"
+    }
+  ],
+  "files": [
+    "socialkit/rules.py",
+    "tests/test_rules.py"
+  ],
+  "regions": [
+    {
+      "file": "socialkit/rules.py",
+      "function": "verified_follower_floor"
+    },
+    {
+      "file": "socialkit/rules.py",
+      "function": "trending_min_mentions"
+    }
+  ],
+  "testing_evidence": "none",
+  "deployment_evidence": "none",
+  "metadata_availability": "squash dropped the cherry-pick trailers",
+  "known_uncertainty": "second half diverges on the target side",
+  "expected_warnings": [
+    "one logical change split over two commits on the base side"
+  ],
+  "safe_resolution_constraints": [],
+  "human_review_required": false,
+  "assertions": [
+    {
+      "type": "diff_subset",
+      "small": [
+        "7f048a6faaec772dfeaf2df88bdda71ea96a01db"
+      ],
+      "big": "4ef9bacca05ba54456dd37156531857e873c1104"
+    }
+  ],
+  "id": "6",
+  "sub_entries": [
+    {
+      "original_commits": [
+        "69c43e9cd1551b26dfbfc2a0a7c34b18df417645",
+        "26ba2f9577181aa322967e5fcbac7f4278add7c1"
+      ],
+      "derived_commits": [
+        "721d143dffe3b6dc69e8c53d45994b451163d2d2"
+      ],
+      "change_relationships": [
+        {
+          "a": "69c43e9cd1551b26dfbfc2a0a7c34b18df417645",
+          "b": "721d143dffe3b6dc69e8c53d45994b451163d2d2",
+          "relation": "combined"
+        },
+        {
+          "a": "26ba2f9577181aa322967e5fcbac7f4278add7c1",
+          "b": "721d143dffe3b6dc69e8c53d45994b451163d2d2",
+          "relation": "combined"
+        }
+      ],
+      "files": [
+        "socialkit/rules.py",
+        "tests/test_rules.py"
+      ],
+      "regions": [
+        {
+          "file": "socialkit/rules.py",
+          "function": "follow_limit_per_day"
+        },
+        {
+          "file": "socialkit/rules.py",
+          "function": "max_following"
+        },
+        {
+          "file": "socialkit/rules.py",
+          "function": "post_length_limit"
+        }
+      ],
+      "testing_evidence": "none",
+      "deployment_evidence": "none",
+      "metadata_availability": "squash dropped the cherry-pick trailers",
+      "known_uncertainty": "none",
+      "expected_warnings": [
+        "squashed backport; trailers lost"
+      ],
+      "safe_resolution_constraints": [],
+      "human_review_required": false,
+      "assertions": [
+        {
+          "type": "trailer",
+          "commit": "721d143dffe3b6dc69e8c53d45994b451163d2d2",
+          "expect": "missing"
+        },
+        {
+          "type": "diff_subset",
+          "small": [
+            "69c43e9cd1551b26dfbfc2a0a7c34b18df417645",
+            "26ba2f9577181aa322967e5fcbac7f4278add7c1"
+          ],
+          "big": "721d143dffe3b6dc69e8c53d45994b451163d2d2"
+        }
+      ],
+      "id": "6.a",
+      "catalog_id": 19
+    },
+    {
+      "original_commits": [
+        "d7693cf116114972fd826f027c53fb332b2bde20"
+      ],
+      "derived_commits": [
+        "f6a9b99e85de401682271b4da22831212e14cee2"
+      ],
+      "change_relationships": [
+        {
+          "a": "d7693cf116114972fd826f027c53fb332b2bde20",
+          "b": "f6a9b99e85de401682271b4da22831212e14cee2",
+          "relation": "identical"
+        }
+      ],
+      "files": [
+        "socialkit/rules.py",
+        "tests/test_rules.py"
+      ],
+      "regions": [
+        {
+          "file": "socialkit/rules.py",
+          "function": "feed_page_size"
+        }
+      ],
+      "testing_evidence": "none",
+      "deployment_evidence": "none",
+      "metadata_availability": "trailer and provenance note both name the wrong origin commit",
+      "known_uncertainty": "true origin recoverable only by patch-id",
+      "expected_warnings": [
+        "cherry-pick trailer does not point at the real origin"
+      ],
+      "safe_resolution_constraints": [],
+      "human_review_required": false,
+      "assertions": [
+        {
+          "type": "patch_id_equal",
+          "a": "d7693cf116114972fd826f027c53fb332b2bde20",
+          "b": "f6a9b99e85de401682271b4da22831212e14cee2"
+        },
+        {
+          "type": "trailer",
+          "commit": "f6a9b99e85de401682271b4da22831212e14cee2",
+          "expect": "invalid",
+          "origin": "d7693cf116114972fd826f027c53fb332b2bde20"
+        },
+        {
+          "type": "note",
+          "ref": "provenance",
+          "commit": "f6a9b99e85de401682271b4da22831212e14cee2",
+          "expect": "present"
+        }
+      ],
+      "id": "6.b",
+      "catalog_id": 20
+    }
+  ],
+  "patch_ids": {
+    "@S006.t1": "fe40d138b2b9b2674c6148fbcfc404a0ed48e2aa",
+    "@S006.b1": "0b6f23f02f19c0391f148780f100841576ff57fc",
+    "@S006.b2": "31d9781da3977ebfc93e6c888d270f5cf5502851",
+    "@S006.c19_t1": "d9694e269649f35f9644422d82f5db95d27ed6ec",
+    "@S006.c19_t2": "8881c344ccc31c7b7b3c8848e302389bda7db4e2",
+    "@S006.c19_sq": "fe5ea67eeaa1362d5152d090c061f7233e377e53",
+    "@S006.c20_t1": "41ed3c8589f87881f33fc16434e10aa4268493d6",
+    "@S006.c20_b1": "e46cac00996163a0b3c7ccc36dc109080407eff8"
+  },
+  "commit_labels": {
+    "S006.F": "1596e0533048a98252a3d49a0724b37ca9462576",
+    "S006.b1": "7f048a6faaec772dfeaf2df88bdda71ea96a01db",
+    "S006.b2": "9640ecce0b7c99a78379a28726eef928ae4d0ab6",
+    "S006.c19_b1": "baa46a1f30c80d030e7107eedece6d6c9c7f9dfd",
+    "S006.c19_b2": "4b176244552e44788283674116cfdf080d098904",
+    "S006.c19_b3": "0e41a0d3732a44f886d7c091a16519dbf0627f51",
+    "S006.c19_sq": "721d143dffe3b6dc69e8c53d45994b451163d2d2",
+    "S006.c19_t1": "69c43e9cd1551b26dfbfc2a0a7c34b18df417645",
+    "S006.c19_t2": "26ba2f9577181aa322967e5fcbac7f4278add7c1",
+    "S006.c19_t3": "c91f47d2fcb4a35326b4994873d6fa99e308872e",
+    "S006.c20_b0": "28f3cb0d7dba652d70f5c6af7e579066b67c26ab",
+    "S006.c20_b1": "f6a9b99e85de401682271b4da22831212e14cee2",
+    "S006.c20_b2": "a873521053d0abbc9c7dc822b00fec9c79ce6a6f",
+    "S006.c20_t1": "d7693cf116114972fd826f027c53fb332b2bde20",
+    "S006.c20_t2": "0b6168641663782d805a9c299fb2dbc0262a95fa",
+    "S006.c20_u1": "d4d03e66f24041f3ef4435f52755ab6c4f892cce",
+    "S006.t1": "4ef9bacca05ba54456dd37156531857e873c1104"
+  }
+}

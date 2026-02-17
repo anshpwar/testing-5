@@ -1,0 +1,90 @@
+{
+  "scenario_id": "S037",
+  "repo_id": "testing-5",
+  "title": "A deployment record names a commit whose tests were never recorded",
+  "difficulty": 1,
+  "primary_catalog_id": 37,
+  "catalog_ids": [
+    37
+  ],
+  "expected_git_outcome": "EVIDENCE_ONLY",
+  "merge_pair": {
+    "base": "scenario/S037/base",
+    "target": "scenario/S037/target",
+    "all_pairs": [
+      [
+        "scenario/S037/base",
+        "scenario/S037/target"
+      ]
+    ],
+    "additional_sides": {}
+  },
+  "fork_commit": "1596e0533048a98252a3d49a0724b37ca9462576",
+  "expected_conflicted_files": [],
+  "validation_method": "merge",
+  "clone_profile": "full",
+  "branches": [
+    "scenario/S037/base",
+    "scenario/S037/target"
+  ],
+  "original_commits": [
+    "f6e426e695fe60f88d46e2f7e251cc3d30a6fb74"
+  ],
+  "derived_commits": [
+    "be758cf8b7436116450d5a2beb33da3ca1bc9032"
+  ],
+  "change_relationships": [
+    {
+      "a": "f6e426e695fe60f88d46e2f7e251cc3d30a6fb74",
+      "b": "be758cf8b7436116450d5a2beb33da3ca1bc9032",
+      "relation": "unrelated"
+    }
+  ],
+  "files": [
+    "socialkit/rules.py",
+    "tests/test_rules.py"
+  ],
+  "regions": [
+    {
+      "file": "socialkit/rules.py",
+      "function": "max_following"
+    }
+  ],
+  "testing_evidence": "t1 PASSED in uat",
+  "deployment_evidence": "never deployed to prod",
+  "metadata_availability": "full",
+  "known_uncertainty": "none",
+  "expected_warnings": [
+    "uat-tested change is not in production"
+  ],
+  "safe_resolution_constraints": [],
+  "human_review_required": false,
+  "assertions": [
+    {
+      "type": "note",
+      "ref": "deploy",
+      "commit": "f6e426e695fe60f88d46e2f7e251cc3d30a6fb74",
+      "expect": "absent"
+    },
+    {
+      "type": "note",
+      "ref": "ci",
+      "commit": "f6e426e695fe60f88d46e2f7e251cc3d30a6fb74",
+      "expect": "present",
+      "fields": {
+        "env": "uat"
+      }
+    }
+  ],
+  "id": "37",
+  "sub_entries": [],
+  "patch_ids": {
+    "@S037.t1": "fa6684354e1079986b148a850d74f8ccb352bccb",
+    "@S037.b1": "58e55bb17a581ab1af8ce176dd8af233dceaab5e"
+  },
+  "commit_labels": {
+    "S037.F": "1596e0533048a98252a3d49a0724b37ca9462576",
+    "S037.b1": "be758cf8b7436116450d5a2beb33da3ca1bc9032",
+    "S037.t1": "f6e426e695fe60f88d46e2f7e251cc3d30a6fb74"
+  }
+}

@@ -1,0 +1,55 @@
+{
+  "pins": {
+    "c_compiler": "Apple clang version 17.0.0 (clang-1700.6.4.2)",
+    "django": "6.1.2",
+    "git": "git version 2.53.0",
+    "make": "GNU Make 3.81",
+    "node": "v26.3.0",
+    "pytest": "pytest 9.2.0",
+    "python": "3.14.5"
+  },
+  "repo": "testing-5",
+  "services": [
+    "pulse-web",
+    "pulse-worker"
+  ],
+  "stack": "Django (profiles, follows, posts, feed, moderation) with a JSON API and a small ES-module JavaScript frontend",
+  "start_date": "2025-01-13T09:40:00",
+  "suites": [
+    {
+      "argv": [
+        "{py}",
+        "manage.py",
+        "test",
+        "tests",
+        "--settings=pulsehub.settings.test",
+        "-p",
+        "test_[!z]*.py",
+        "--noinput"
+      ],
+      "name": "unit"
+    },
+    {
+      "argv": [
+        "{py}",
+        "manage.py",
+        "test",
+        "tests",
+        "--settings=pulsehub.settings.test",
+        "-p",
+        "test_zz*.py",
+        "--noinput"
+      ],
+      "name": "integration"
+    },
+    {
+      "argv": [
+        "node",
+        "--test",
+        "frontend/tests/*.test.js"
+      ],
+      "name": "js"
+    }
+  ],
+  "title": "Pulse"
+}

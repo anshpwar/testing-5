@@ -1,0 +1,113 @@
+{
+  "scenario_id": "S054",
+  "repo_id": "testing-5",
+  "title": "A rule is edited concurrently with differently shaped code",
+  "difficulty": 3,
+  "primary_catalog_id": 54,
+  "catalog_ids": [
+    54
+  ],
+  "expected_git_outcome": "CONFLICT",
+  "merge_pair": {
+    "base": "scenario/S054/base",
+    "target": "scenario/S054/target",
+    "all_pairs": [
+      [
+        "scenario/S054/base",
+        "scenario/S054/target"
+      ]
+    ],
+    "additional_sides": {
+      "feature": "scenario/S054/feature"
+    }
+  },
+  "fork_commit": "1596e0533048a98252a3d49a0724b37ca9462576",
+  "expected_conflicted_files": [
+    "socialkit/rules.py",
+    "tests/test_rules.py"
+  ],
+  "validation_method": "merge",
+  "clone_profile": "full",
+  "branches": [
+    "scenario/S054/base",
+    "scenario/S054/feature",
+    "scenario/S054/target"
+  ],
+  "original_commits": [
+    "07caaaa5634aaa958dcafc2f77a24b0f6b4fe753",
+    "6b60cc22f966b36ef014ae3541c944dc551c555b"
+  ],
+  "derived_commits": [
+    "d27fec5d46d7bf29da2172c71cecb7c42f18201d"
+  ],
+  "change_relationships": [
+    {
+      "a": "07caaaa5634aaa958dcafc2f77a24b0f6b4fe753",
+      "b": "d27fec5d46d7bf29da2172c71cecb7c42f18201d",
+      "relation": "combined"
+    },
+    {
+      "a": "6b60cc22f966b36ef014ae3541c944dc551c555b",
+      "b": "d27fec5d46d7bf29da2172c71cecb7c42f18201d",
+      "relation": "combined"
+    }
+  ],
+  "files": [
+    "socialkit/rules.py",
+    "tests/test_rules.py"
+  ],
+  "regions": [
+    {
+      "file": "socialkit/rules.py",
+      "function": "freshness_window_hours"
+    },
+    {
+      "file": "socialkit/rules.py",
+      "function": "report_auto_hide_threshold"
+    }
+  ],
+  "testing_evidence": "ci PASSED on feature tip f2; squash commit sq has no record",
+  "deployment_evidence": "none",
+  "metadata_availability": "feature side published as tag scenario/S054/feature",
+  "known_uncertainty": "none",
+  "expected_warnings": [
+    "squash merge dissolves per-commit lineage"
+  ],
+  "safe_resolution_constraints": [],
+  "human_review_required": false,
+  "assertions": [
+    {
+      "type": "parents",
+      "commit": "d27fec5d46d7bf29da2172c71cecb7c42f18201d",
+      "count": 1
+    },
+    {
+      "type": "ancestor",
+      "a": "6b60cc22f966b36ef014ae3541c944dc551c555b",
+      "b": "d27fec5d46d7bf29da2172c71cecb7c42f18201d",
+      "expect": false
+    },
+    {
+      "type": "diff_subset",
+      "small": [
+        "07caaaa5634aaa958dcafc2f77a24b0f6b4fe753",
+        "6b60cc22f966b36ef014ae3541c944dc551c555b"
+      ],
+      "big": "d27fec5d46d7bf29da2172c71cecb7c42f18201d"
+    }
+  ],
+  "id": "54",
+  "sub_entries": [],
+  "patch_ids": {
+    "@S054.f1": "0171b12fbdbe3ab13ef2eade913e53bbedca94b4",
+    "@S054.f2": "c435f1de92fe381327527c71e0a1660a4f12a883",
+    "@S054.sq": "4ae9de0b8cee3b24bd300f66ccdf4817af2ce2ad"
+  },
+  "commit_labels": {
+    "S054.F": "1596e0533048a98252a3d49a0724b37ca9462576",
+    "S054.f1": "07caaaa5634aaa958dcafc2f77a24b0f6b4fe753",
+    "S054.f2": "6b60cc22f966b36ef014ae3541c944dc551c555b",
+    "S054.sq": "d27fec5d46d7bf29da2172c71cecb7c42f18201d",
+    "S054.t1": "9da1c81533ddb29210334e86ad60fc16c7ac3c73"
+  }
+}

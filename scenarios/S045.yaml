@@ -1,0 +1,69 @@
+scenario_id: S045
+repo_id: testing-5
+title: The same history seen through a clone that has lost its old tags
+difficulty: 3
+primary_catalog_id: 45
+catalog_ids:
+- 45
+expected_git_outcome: CONFLICT
+merge_pair:
+  base: scenario/S054/base
+  target: scenario/S054/target
+  all_pairs:
+  - - scenario/S054/base
+    - scenario/S054/target
+  additional_sides:
+    feature: scenario/S054/feature
+fork_commit: '@S054.F'
+expected_conflicted_files:
+- socialkit/rules.py
+- tests/test_rules.py
+validation_method: merge
+clone_profile:
+  name: drop-archive-tags
+  drop_tags: archive/*
+  effect: pre-rewrite tips unreachable
+sits_on:
+- S054
+branches:
+- scenario/S054/base
+- scenario/S054/feature
+- scenario/S054/target
+id: '45'
+original_commits:
+- '@S054.f1'
+- '@S054.f2'
+derived_commits:
+- '@S054.sq'
+change_relationships:
+- a: '@S054.f1'
+  b: '@S054.sq'
+  relation: combined
+- a: '@S054.f2'
+  b: '@S054.sq'
+  relation: combined
+files:
+- socialkit/rules.py
+- tests/test_rules.py
+regions:
+- file: socialkit/rules.py
+  function: freshness_window_hours
+- file: socialkit/rules.py
+  function: report_auto_hide_threshold
+testing_evidence: ci PASSED on feature tip f2; squash commit sq has no record
+deployment_evidence: none
+metadata_availability: pre-rewrite tips unreachable
+known_uncertainty: evidence is reachable only as far as the clone profile allows
+expected_warnings:
+- 'clone profile drop-archive-tags: pre-rewrite tips unreachable'
+- squash merge dissolves per-commit lineage
+safe_resolution_constraints: []
+human_review_required: true
+assertions:
+- type: profile_effect
+  profile: drop-archive-tags
+sub_entries: []
+patch_ids:
+  '@S054.f1': 0171b12fbdbe3ab13ef2eade913e53bbedca94b4
+  '@S054.f2': c435f1de92fe381327527c71e0a1660a4f12a883
+  '@S054.sq': 4ae9de0b8cee3b24bd300f66ccdf4817af2ce2ad

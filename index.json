@@ -1,0 +1,107 @@
+[
+  {
+    "scenario_id": "S037",
+    "catalog_ids": [
+      37
+    ],
+    "difficulty": 1,
+    "expected_git_outcome": "EVIDENCE_ONLY",
+    "title": "A deployment record names a commit whose tests were never recorded"
+  },
+  {
+    "scenario_id": "S068",
+    "catalog_ids": [
+      68
+    ],
+    "difficulty": 3,
+    "expected_git_outcome": "CONFLICT",
+    "title": "Two branches change the same schedule and its test in different ways"
+  },
+  {
+    "scenario_id": "S054",
+    "catalog_ids": [
+      54
+    ],
+    "difficulty": 3,
+    "expected_git_outcome": "CONFLICT",
+    "title": "A rule is edited concurrently with differently shaped code"
+  },
+  {
+    "scenario_id": "S045",
+    "catalog_ids": [
+      45
+    ],
+    "difficulty": 3,
+    "expected_git_outcome": "CONFLICT",
+    "title": "The same history seen through a clone that has lost its old tags"
+  },
+  {
+    "scenario_id": "S006",
+    "catalog_ids": [
+      6,
+      19,
+      20
+    ],
+    "difficulty": 4,
+    "expected_git_outcome": "CONFLICT",
+    "title": "Concurrent edits to one schedule inside a history with extra noise"
+  },
+  {
+    "scenario_id": "S027",
+    "catalog_ids": [
+      27,
+      56,
+      35
+    ],
+    "difficulty": 4,
+    "expected_git_outcome": "CONFLICT",
+    "title": "Evidence notes disagree about one commit inside a busy history"
+  },
+  {
+    "scenario_id": "S077",
+    "catalog_ids": [
+      77,
+      83,
+      24
+    ],
+    "difficulty": 4,
+    "expected_git_outcome": "CLEAN_BUT_BROKEN",
+    "title": "A JSON field is renamed while a new frontend module keeps reading the old name"
+  },
+  {
+    "scenario_id": "S100",
+    "catalog_ids": [
+      100,
+      79,
+      83
+    ],
+    "difficulty": 4,
+    "expected_git_outcome": "CLEAN_BUT_BROKEN",
+    "title": "A view context variable is renamed while a new template keeps using the old name"
+  },
+  {
+    "scenario_id": "S017",
+    "catalog_ids": [
+      17,
+      20,
+      38
+    ],
+    "difficulty": 4,
+    "expected_git_outcome": "CONFLICT",
+    "title": "Two reviewers tune the same schedule while other changes land around it"
+  },
+  {
+    "scenario_id": "S088",
+    "catalog_ids": [
+      88,
+      85,
+      86,
+      30,
+      90,
+      46
+    ],
+    "difficulty": 5,
+    "expected_git_outcome": "CONFLICT",
+    "title": "Long history with shared tuning, repeated edits and mixed provenance"
+  }
+]

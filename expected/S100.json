@@ -1,0 +1,189 @@
+{
+  "scenario_id": "S100",
+  "repo_id": "testing-5",
+  "title": "A view context variable is renamed while a new template keeps using the old name",
+  "difficulty": 4,
+  "primary_catalog_id": 100,
+  "catalog_ids": [
+    100,
+    79,
+    83
+  ],
+  "expected_git_outcome": "CLEAN_BUT_BROKEN",
+  "merge_pair": {
+    "base": "scenario/S100/base",
+    "target": "scenario/S100/target",
+    "all_pairs": [
+      [
+        "scenario/S100/base",
+        "scenario/S100/target"
+      ]
+    ],
+    "additional_sides": {}
+  },
+  "fork_commit": "1596e0533048a98252a3d49a0724b37ca9462576",
+  "expected_conflicted_files": [],
+  "validation_method": "merge",
+  "clone_profile": "full",
+  "branches": [
+    "scenario/S100/base",
+    "scenario/S100/target"
+  ],
+  "original_commits": [
+    "30f32f6665b13f148bb5889e8c28b3f6637331c3"
+  ],
+  "derived_commits": [
+    "2d99508f37b6c318a51036cd1af3d285b4cd7843"
+  ],
+  "change_relationships": [
+    {
+      "a": "30f32f6665b13f148bb5889e8c28b3f6637331c3",
+      "b": "2d99508f37b6c318a51036cd1af3d285b4cd7843",
+      "relation": "unrelated"
+    }
+  ],
+  "files": [
+    "feed/views.py",
+    "feed/templates/feed/timeline.html",
+    "feed/digest_100.py",
+    "feed/templates/feed/digest_100.html"
+  ],
+  "regions": [
+    {
+      "file": "feed/views.py",
+      "function": "timeline_context"
+    }
+  ],
+  "testing_evidence": "none",
+  "deployment_evidence": "none",
+  "metadata_availability": "full",
+  "known_uncertainty": "none",
+  "expected_warnings": [
+    "clean merge; the new template iterates a context variable that no longer exists and renders it as empty"
+  ],
+  "safe_resolution_constraints": [
+    "Git cannot detect this; only the test run can"
+  ],
+  "human_review_required": false,
+  "assertions": [
+    {
+      "type": "merge_then_tests",
+      "expect": "fail",
+      "suites": [
+        "unit"
+      ]
+    }
+  ],
+  "id": "100",
+  "sub_entries": [
+    {
+      "original_commits": [
+        "9b02728855aec5d71940b62f753fc09f0b996dff"
+      ],
+      "derived_commits": [
+        "18301a1df9b48602d855442c968fa4e65c51d7d6"
+      ],
+      "change_relationships": [
+        {
+          "a": "9b02728855aec5d71940b62f753fc09f0b996dff",
+          "b": "18301a1df9b48602d855442c968fa4e65c51d7d6",
+          "relation": "unrelated"
+        }
+      ],
+      "files": [
+        "socialkit/conf.py",
+        "socialkit/consumer_79.py"
+      ],
+      "regions": [
+        {
+          "file": "socialkit/conf.py",
+          "function": "DEFAULTS"
+        }
+      ],
+      "testing_evidence": "none",
+      "deployment_evidence": "none",
+      "metadata_availability": "full",
+      "known_uncertainty": "none",
+      "expected_warnings": [
+        "clean merge; new code reads a setting that no longer exists"
+      ],
+      "safe_resolution_constraints": [],
+      "human_review_required": false,
+      "assertions": [
+        {
+          "type": "merge_then_tests",
+          "expect": "fail",
+          "suites": [
+            "unit"
+          ]
+        }
+      ],
+      "id": "100.a",
+      "catalog_id": 79
+    },
+    {
+      "original_commits": [
+        "c3a513933d861f6be0d4cbc00dc6344c8bc2ed43"
+      ],
+      "derived_commits": [
+        "e0e670fd2da2a35e2207de36eed1462df36441bd"
+      ],
+      "change_relationships": [
+        {
+          "a": "c3a513933d861f6be0d4cbc00dc6344c8bc2ed43",
+          "b": "e0e670fd2da2a35e2207de36eed1462df36441bd",
+          "relation": "unrelated"
+        }
+      ],
+      "files": [
+        "socialkit/contract.py",
+        "socialkit/consumer_83.py"
+      ],
+      "regions": [
+        {
+          "file": "socialkit/contract.py",
+          "function": "build_summary"
+        }
+      ],
+      "testing_evidence": "none",
+      "deployment_evidence": "none",
+      "metadata_availability": "full",
+      "known_uncertainty": "none",
+      "expected_warnings": [
+        "clean textual merge; the integrated code fails (new consumer reads the renamed key)"
+      ],
+      "safe_resolution_constraints": [
+        "Git cannot detect this; only the test run can"
+      ],
+      "human_review_required": false,
+      "assertions": [
+        {
+          "type": "merge_then_tests",
+          "expect": "fail",
+          "suites": [
+            "unit"
+          ]
+        }
+      ],
+      "id": "100.b",
+      "catalog_id": 83
+    }
+  ],
+  "patch_ids": {
+    "@S100.k100b": "bced0adae3b61eadb417fc6af1fbdc75f5da4951",
+    "@S100.k100t": "9c522857f018f099928a6be3d10c309b58894979",
+    "@S100.c79_k79b": "fc52e9563fef1da8cd60114676b0367f31b457f4",
+    "@S100.c79_k79t": "91764f6fc33fe00fe8c13392339a7959207af8da",
+    "@S100.c83_k83b": "38c8867aa9404b83742f8181234654be9a633c02",
+    "@S100.c83_k83t": "7c48ddcdd2196d6cca1e66ce5a772426989781dd"
+  },
+  "commit_labels": {
+    "S100.F": "1596e0533048a98252a3d49a0724b37ca9462576",
+    "S100.c79_k79b": "9b02728855aec5d71940b62f753fc09f0b996dff",
+    "S100.c79_k79t": "18301a1df9b48602d855442c968fa4e65c51d7d6",
+    "S100.c83_k83b": "c3a513933d861f6be0d4cbc00dc6344c8bc2ed43",
+    "S100.c83_k83t": "e0e670fd2da2a35e2207de36eed1462df36441bd",
+    "S100.k100b": "30f32f6665b13f148bb5889e8c28b3f6637331c3",
+    "S100.k100t": "2d99508f37b6c318a51036cd1af3d285b4cd7843"
+  }
+}

@@ -1,0 +1,153 @@
+diff --git a/socialkit/rules.py b/socialkit/rules.py
+index 46f45d4..8cf1968 100644
+--- a/socialkit/rules.py
++++ b/socialkit/rules.py
+@@ -46,35 +46,35 @@ def max_following(follower_count):
+ 
+ def post_length_limit(account_age_days):
+     """Longest update body in characters, by account age in days."""
+-    if account_age_days <= 1:
+-        return 123
+-    if account_age_days <= 30:
+-        return 245
+-    if account_age_days <= 180:
+-        return 438
+-    return 875
++    if account_age_days <= 2:
++        return 140
++    if account_age_days <= 33:
++        return 280
++    if account_age_days <= 198:
++        return 500
++    return 1000
+ 
+ 
+ def feed_page_size(following_count):
+     """Updates per timeline page, by the number of accounts followed."""
+-    if following_count <= 10:
+-        return 18
+-    if following_count <= 100:
+-        return 27
+-    if following_count <= 1000:
+-        return 44
+-    return 88
++    if following_count <= 11:
++        return 20
++    if following_count <= 110:
++        return 30
++    if following_count <= 1100:
++        return 50
++    return 100
+ 
+ 
+ def like_weight_points(age_hours):
+     """Ranking points per like, by the age of the update in whole hours."""
+     if age_hours <= 1:
+-        return 10
++        return 9
+     if age_hours <= 6:
+-        return 6
++        return 5
+     if age_hours <= 24:
+-        return 3
+-    return 2
++        return 2
++    return 1
+ 
+ 
+ def reply_weight_points(age_hours):
+@@ -167,10 +167,10 @@ def verified_follower_floor(account_age_days):
+ 
+ def trending_min_mentions(window_hours):
+     """Mentions a hashtag needs to trend, by the length of the window in hours."""
+-    if window_hours <= 1:
+-        return 55
+-    if window_hours <= 6:
+-        return 220
+-    if window_hours <= 24:
+-        return 880
+-    return 2200
++    if window_hours <= 2:
++        return 50
++    if window_hours <= 7:
++        return 200
++    if window_hours <= 26:
++        return 800
++    return 2000
+diff --git a/tests/test_rules.py b/tests/test_rules.py
+index 25515ae..3fef79d 100644
+--- a/tests/test_rules.py
++++ b/tests/test_rules.py
+@@ -42,32 +42,32 @@ class RuleTests(unittest.TestCase):
+         self.assertEqual(rules.max_following(10001), 8250)
+ 
+     def test_post_length_limit(self):
+-        self.assertEqual(rules.post_length_limit(0), 123)
+-        self.assertEqual(rules.post_length_limit(1), 123)
+-        self.assertEqual(rules.post_length_limit(2), 245)
+-        self.assertEqual(rules.post_length_limit(30), 245)
+-        self.assertEqual(rules.post_length_limit(31), 438)
+-        self.assertEqual(rules.post_length_limit(180), 438)
+-        self.assertEqual(rules.post_length_limit(181), 875)
++        self.assertEqual(rules.post_length_limit(0), 140)
++        self.assertEqual(rules.post_length_limit(1), 140)
++        self.assertEqual(rules.post_length_limit(2), 140)
++        self.assertEqual(rules.post_length_limit(30), 280)
++        self.assertEqual(rules.post_length_limit(31), 280)
++        self.assertEqual(rules.post_length_limit(180), 500)
++        self.assertEqual(rules.post_length_limit(181), 500)
+ 
+     def test_feed_page_size(self):
+-        self.assertEqual(rules.feed_page_size(0), 18)
+-        self.assertEqual(rules.feed_page_size(1), 18)
+-        self.assertEqual(rules.feed_page_size(10), 18)
+-        self.assertEqual(rules.feed_page_size(11), 27)
+-        self.assertEqual(rules.feed_page_size(100), 27)
+-        self.assertEqual(rules.feed_page_size(101), 44)
+-        self.assertEqual(rules.feed_page_size(1000), 44)
+-        self.assertEqual(rules.feed_page_size(1001), 88)
++        self.assertEqual(rules.feed_page_size(0), 20)
++        self.assertEqual(rules.feed_page_size(1), 20)
++        self.assertEqual(rules.feed_page_size(10), 20)
++        self.assertEqual(rules.feed_page_size(11), 20)
++        self.assertEqual(rules.feed_page_size(100), 30)
++        self.assertEqual(rules.feed_page_size(101), 30)
++        self.assertEqual(rules.feed_page_size(1000), 50)
++        self.assertEqual(rules.feed_page_size(1001), 50)
+ 
+     def test_like_weight_points(self):
+-        self.assertEqual(rules.like_weight_points(0), 10)
+-        self.assertEqual(rules.like_weight_points(1), 10)
+-        self.assertEqual(rules.like_weight_points(2), 6)
+-        self.assertEqual(rules.like_weight_points(6), 6)
+-        self.assertEqual(rules.like_weight_points(7), 3)
+-        self.assertEqual(rules.like_weight_points(24), 3)
+-        self.assertEqual(rules.like_weight_points(25), 2)
++        self.assertEqual(rules.like_weight_points(0), 9)
++        self.assertEqual(rules.like_weight_points(1), 9)
++        self.assertEqual(rules.like_weight_points(2), 5)
++        self.assertEqual(rules.like_weight_points(6), 5)
++        self.assertEqual(rules.like_weight_points(7), 2)
++        self.assertEqual(rules.like_weight_points(24), 2)
++        self.assertEqual(rules.like_weight_points(25), 1)
+ 
+     def test_reply_weight_points(self):
+         self.assertEqual(rules.reply_weight_points(0), 25)
+@@ -144,10 +144,10 @@ class RuleTests(unittest.TestCase):
+         self.assertEqual(rules.verified_follower_floor(366), 11000)
+ 
+     def test_trending_min_mentions(self):
+-        self.assertEqual(rules.trending_min_mentions(0), 55)
+-        self.assertEqual(rules.trending_min_mentions(1), 55)
+-        self.assertEqual(rules.trending_min_mentions(2), 220)
+-        self.assertEqual(rules.trending_min_mentions(6), 220)
+-        self.assertEqual(rules.trending_min_mentions(7), 880)
+-        self.assertEqual(rules.trending_min_mentions(24), 880)
+-        self.assertEqual(rules.trending_min_mentions(25), 2200)
++        self.assertEqual(rules.trending_min_mentions(0), 50)
++        self.assertEqual(rules.trending_min_mentions(1), 50)
++        self.assertEqual(rules.trending_min_mentions(2), 50)
++        self.assertEqual(rules.trending_min_mentions(6), 200)
++        self.assertEqual(rules.trending_min_mentions(7), 200)
++        self.assertEqual(rules.trending_min_mentions(24), 800)
++        self.assertEqual(rules.trending_min_mentions(25), 800)

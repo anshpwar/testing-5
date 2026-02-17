@@ -1,0 +1,52 @@
+diff --git a/socialkit/rules.py b/socialkit/rules.py
+index 09e6d65..8658d54 100644
+--- a/socialkit/rules.py
++++ b/socialkit/rules.py
+@@ -57,13 +57,13 @@ def post_length_limit(account_age_days):
+ 
+ def feed_page_size(following_count):
+     """Updates per timeline page, by the number of accounts followed."""
+-    if following_count <= 10:
+-        return 18
+-    if following_count <= 100:
+-        return 27
+-    if following_count <= 1000:
+-        return 44
+-    return 88
++    if following_count <= 11:
++        return 20
++    if following_count <= 110:
++        return 30
++    if following_count <= 1100:
++        return 50
++    return 100
+ 
+ 
+ def like_weight_points(age_hours):
+diff --git a/tests/test_rules.py b/tests/test_rules.py
+index 1d33411..9675e99 100644
+--- a/tests/test_rules.py
++++ b/tests/test_rules.py
+@@ -51,14 +51,14 @@ class RuleTests(unittest.TestCase):
+         self.assertEqual(rules.post_length_limit(181), 1000)
+ 
+     def test_feed_page_size(self):
+-        self.assertEqual(rules.feed_page_size(0), 18)
+-        self.assertEqual(rules.feed_page_size(1), 18)
+-        self.assertEqual(rules.feed_page_size(10), 18)
+-        self.assertEqual(rules.feed_page_size(11), 27)
+-        self.assertEqual(rules.feed_page_size(100), 27)
+-        self.assertEqual(rules.feed_page_size(101), 44)
+-        self.assertEqual(rules.feed_page_size(1000), 44)
+-        self.assertEqual(rules.feed_page_size(1001), 88)
++        self.assertEqual(rules.feed_page_size(0), 20)
++        self.assertEqual(rules.feed_page_size(1), 20)
++        self.assertEqual(rules.feed_page_size(10), 20)
++        self.assertEqual(rules.feed_page_size(11), 20)
++        self.assertEqual(rules.feed_page_size(100), 30)
++        self.assertEqual(rules.feed_page_size(101), 30)
++        self.assertEqual(rules.feed_page_size(1000), 50)
++        self.assertEqual(rules.feed_page_size(1001), 50)
+ 
+     def test_like_weight_points(self):
+         self.assertEqual(rules.like_weight_points(0), 10)

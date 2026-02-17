@@ -1,0 +1,153 @@
+diff --git a/socialkit/rules.py b/socialkit/rules.py
+index f3f5e15..771c62e 100644
+--- a/socialkit/rules.py
++++ b/socialkit/rules.py
+@@ -35,46 +35,46 @@ def follow_limit_per_day(account_age_days):
+ 
+ def max_following(follower_count):
+     """Accounts one profile may follow, by its follower count."""
+-    if follower_count <= 100:
+-        return 1001
+-    if follower_count <= 1000:
+-        return 4001
+-    if follower_count <= 10000:
+-        return 10001
+-    return 15001
++    if follower_count <= 110:
++        return 500
++    if follower_count <= 1100:
++        return 2000
++    if follower_count <= 11000:
++        return 5000
++    return 7500
+ 
+ 
+ def post_length_limit(account_age_days):
+     """Longest update body in characters, by account age in days."""
+-    if account_age_days <= 1:
+-        return 123
+-    if account_age_days <= 30:
+-        return 245
+-    if account_age_days <= 180:
+-        return 438
+-    return 875
++    if account_age_days <= 2:
++        return 140
++    if account_age_days <= 33:
++        return 280
++    if account_age_days <= 198:
++        return 500
++    return 1000
+ 
+ 
+ def feed_page_size(following_count):
+     """Updates per timeline page, by the number of accounts followed."""
+     if following_count <= 10:
+-        return 20
++        return 22
+     if following_count <= 100:
+-        return 30
++        return 33
+     if following_count <= 1000:
+-        return 50
+-    return 100
++        return 55
++    return 110
+ 
+ 
+ def like_weight_points(age_hours):
+     """Ranking points per like, by the age of the update in whole hours."""
+-    if age_hours <= 1:
+-        return 9
+-    if age_hours <= 6:
+-        return 5
+-    if age_hours <= 24:
+-        return 2
+-    return 1
++    if age_hours <= 2:
++        return 10
++    if age_hours <= 7:
++        return 6
++    if age_hours <= 26:
++        return 3
++    return 2
+ 
+ 
+ def reply_weight_points(age_hours):
+diff --git a/tests/test_rules.py b/tests/test_rules.py
+index 65cb00b..3e5ab4f 100644
+--- a/tests/test_rules.py
++++ b/tests/test_rules.py
+@@ -32,42 +32,42 @@ class RuleTests(unittest.TestCase):
+         self.assertEqual(rules.follow_limit_per_day(31), 1000)
+ 
+     def test_max_following(self):
+-        self.assertEqual(rules.max_following(0), 1001)
+-        self.assertEqual(rules.max_following(1), 1001)
+-        self.assertEqual(rules.max_following(100), 1001)
+-        self.assertEqual(rules.max_following(101), 4001)
+-        self.assertEqual(rules.max_following(1000), 4001)
+-        self.assertEqual(rules.max_following(1001), 10001)
+-        self.assertEqual(rules.max_following(10000), 10001)
+-        self.assertEqual(rules.max_following(10001), 15001)
++        self.assertEqual(rules.max_following(0), 500)
++        self.assertEqual(rules.max_following(1), 500)
++        self.assertEqual(rules.max_following(100), 500)
++        self.assertEqual(rules.max_following(101), 500)
++        self.assertEqual(rules.max_following(1000), 2000)
++        self.assertEqual(rules.max_following(1001), 2000)
++        self.assertEqual(rules.max_following(10000), 5000)
++        self.assertEqual(rules.max_following(10001), 5000)
+ 
+     def test_post_length_limit(self):
+-        self.assertEqual(rules.post_length_limit(0), 123)
+-        self.assertEqual(rules.post_length_limit(1), 123)
+-        self.assertEqual(rules.post_length_limit(2), 245)
+-        self.assertEqual(rules.post_length_limit(30), 245)
+-        self.assertEqual(rules.post_length_limit(31), 438)
+-        self.assertEqual(rules.post_length_limit(180), 438)
+-        self.assertEqual(rules.post_length_limit(181), 875)
++        self.assertEqual(rules.post_length_limit(0), 140)
++        self.assertEqual(rules.post_length_limit(1), 140)
++        self.assertEqual(rules.post_length_limit(2), 140)
++        self.assertEqual(rules.post_length_limit(30), 280)
++        self.assertEqual(rules.post_length_limit(31), 280)
++        self.assertEqual(rules.post_length_limit(180), 500)
++        self.assertEqual(rules.post_length_limit(181), 500)
+ 
+     def test_feed_page_size(self):
+-        self.assertEqual(rules.feed_page_size(0), 20)
+-        self.assertEqual(rules.feed_page_size(1), 20)
+-        self.assertEqual(rules.feed_page_size(10), 20)
+-        self.assertEqual(rules.feed_page_size(11), 30)
+-        self.assertEqual(rules.feed_page_size(100), 30)
+-        self.assertEqual(rules.feed_page_size(101), 50)
+-        self.assertEqual(rules.feed_page_size(1000), 50)
+-        self.assertEqual(rules.feed_page_size(1001), 100)
++        self.assertEqual(rules.feed_page_size(0), 22)
++        self.assertEqual(rules.feed_page_size(1), 22)
++        self.assertEqual(rules.feed_page_size(10), 22)
++        self.assertEqual(rules.feed_page_size(11), 33)
++        self.assertEqual(rules.feed_page_size(100), 33)
++        self.assertEqual(rules.feed_page_size(101), 55)
++        self.assertEqual(rules.feed_page_size(1000), 55)
++        self.assertEqual(rules.feed_page_size(1001), 110)
+ 
+     def test_like_weight_points(self):
+-        self.assertEqual(rules.like_weight_points(0), 9)
+-        self.assertEqual(rules.like_weight_points(1), 9)
+-        self.assertEqual(rules.like_weight_points(2), 5)
+-        self.assertEqual(rules.like_weight_points(6), 5)
+-        self.assertEqual(rules.like_weight_points(7), 2)
+-        self.assertEqual(rules.like_weight_points(24), 2)
+-        self.assertEqual(rules.like_weight_points(25), 1)
++        self.assertEqual(rules.like_weight_points(0), 10)
++        self.assertEqual(rules.like_weight_points(1), 10)
++        self.assertEqual(rules.like_weight_points(2), 10)
++        self.assertEqual(rules.like_weight_points(6), 6)
++        self.assertEqual(rules.like_weight_points(7), 6)
++        self.assertEqual(rules.like_weight_points(24), 3)
++        self.assertEqual(rules.like_weight_points(25), 3)
+ 
+     def test_reply_weight_points(self):
+         self.assertEqual(rules.reply_weight_points(0), 25)

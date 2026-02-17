@@ -1,0 +1,149 @@
+diff --git a/socialkit/rules.py b/socialkit/rules.py
+index 2accc4d..d9889d0 100644
+--- a/socialkit/rules.py
++++ b/socialkit/rules.py
+@@ -134,43 +134,43 @@ def suspension_days(strikes):
+ 
+ def report_cooldown_minutes(reports_today):
+     """Minutes a reporter must wait between reports, by reports already filed today."""
+-    if reports_today <= 3:
+-        return 1
+-    if reports_today <= 10:
+-        return 31
+-    if reports_today <= 25:
+-        return 121
+-    return 2881
++    if reports_today <= 4:
++        return 0
++    if reports_today <= 11:
++        return 15
++    if reports_today <= 27:
++        return 60
++    return 1440
+ 
+ 
+ def media_size_limit_kb(account_age_days):
+     """Largest media attachment in kilobytes, by account age in days."""
+-    if account_age_days <= 7:
+-        return 448
+-    if account_age_days <= 30:
+-        return 1792
+-    if account_age_days <= 180:
+-        return 7168
+-    return 17920
++    if account_age_days <= 8:
++        return 512
++    if account_age_days <= 33:
++        return 2048
++    if account_age_days <= 198:
++        return 8192
++    return 20480
+ 
+ 
+ def verified_follower_floor(account_age_days):
+     """Followers needed to request verification, by account age in days."""
+     if account_age_days <= 30:
+-        return 500
++        return 438
+     if account_age_days <= 180:
+-        return 1000
++        return 875
+     if account_age_days <= 365:
+-        return 5000
+-    return 10000
++        return 4375
++    return 8750
+ 
+ 
+ def trending_min_mentions(window_hours):
+     """Mentions a hashtag needs to trend, by the length of the window in hours."""
+-    if window_hours <= 1:
+-        return 101
+-    if window_hours <= 6:
+-        return 401
+-    if window_hours <= 24:
+-        return 1601
+-    return 4001
++    if window_hours <= 2:
++        return 50
++    if window_hours <= 7:
++        return 200
++    if window_hours <= 26:
++        return 800
++    return 2000
+diff --git a/tests/test_rules.py b/tests/test_rules.py
+index 78e723c..9754720 100644
+--- a/tests/test_rules.py
++++ b/tests/test_rules.py
+@@ -114,40 +114,40 @@ class RuleTests(unittest.TestCase):
+         self.assertEqual(rules.suspension_days(5), 90)
+ 
+     def test_report_cooldown_minutes(self):
+-        self.assertEqual(rules.report_cooldown_minutes(0), 1)
+-        self.assertEqual(rules.report_cooldown_minutes(1), 1)
+-        self.assertEqual(rules.report_cooldown_minutes(3), 1)
+-        self.assertEqual(rules.report_cooldown_minutes(4), 31)
+-        self.assertEqual(rules.report_cooldown_minutes(10), 31)
+-        self.assertEqual(rules.report_cooldown_minutes(11), 121)
+-        self.assertEqual(rules.report_cooldown_minutes(25), 121)
+-        self.assertEqual(rules.report_cooldown_minutes(26), 2881)
++        self.assertEqual(rules.report_cooldown_minutes(0), 0)
++        self.assertEqual(rules.report_cooldown_minutes(1), 0)
++        self.assertEqual(rules.report_cooldown_minutes(3), 0)
++        self.assertEqual(rules.report_cooldown_minutes(4), 0)
++        self.assertEqual(rules.report_cooldown_minutes(10), 15)
++        self.assertEqual(rules.report_cooldown_minutes(11), 15)
++        self.assertEqual(rules.report_cooldown_minutes(25), 60)
++        self.assertEqual(rules.report_cooldown_minutes(26), 60)
+ 
+     def test_media_size_limit_kb(self):
+-        self.assertEqual(rules.media_size_limit_kb(0), 448)
+-        self.assertEqual(rules.media_size_limit_kb(1), 448)
+-        self.assertEqual(rules.media_size_limit_kb(7), 448)
+-        self.assertEqual(rules.media_size_limit_kb(8), 1792)
+-        self.assertEqual(rules.media_size_limit_kb(30), 1792)
+-        self.assertEqual(rules.media_size_limit_kb(31), 7168)
+-        self.assertEqual(rules.media_size_limit_kb(180), 7168)
+-        self.assertEqual(rules.media_size_limit_kb(181), 17920)
++        self.assertEqual(rules.media_size_limit_kb(0), 512)
++        self.assertEqual(rules.media_size_limit_kb(1), 512)
++        self.assertEqual(rules.media_size_limit_kb(7), 512)
++        self.assertEqual(rules.media_size_limit_kb(8), 512)
++        self.assertEqual(rules.media_size_limit_kb(30), 2048)
++        self.assertEqual(rules.media_size_limit_kb(31), 2048)
++        self.assertEqual(rules.media_size_limit_kb(180), 8192)
++        self.assertEqual(rules.media_size_limit_kb(181), 8192)
+ 
+     def test_verified_follower_floor(self):
+-        self.assertEqual(rules.verified_follower_floor(0), 500)
+-        self.assertEqual(rules.verified_follower_floor(1), 500)
+-        self.assertEqual(rules.verified_follower_floor(30), 500)
+-        self.assertEqual(rules.verified_follower_floor(31), 1000)
+-        self.assertEqual(rules.verified_follower_floor(180), 1000)
+-        self.assertEqual(rules.verified_follower_floor(181), 5000)
+-        self.assertEqual(rules.verified_follower_floor(365), 5000)
+-        self.assertEqual(rules.verified_follower_floor(366), 10000)
++        self.assertEqual(rules.verified_follower_floor(0), 438)
++        self.assertEqual(rules.verified_follower_floor(1), 438)
++        self.assertEqual(rules.verified_follower_floor(30), 438)
++        self.assertEqual(rules.verified_follower_floor(31), 875)
++        self.assertEqual(rules.verified_follower_floor(180), 875)
++        self.assertEqual(rules.verified_follower_floor(181), 4375)
++        self.assertEqual(rules.verified_follower_floor(365), 4375)
++        self.assertEqual(rules.verified_follower_floor(366), 8750)
+ 
+     def test_trending_min_mentions(self):
+-        self.assertEqual(rules.trending_min_mentions(0), 101)
+-        self.assertEqual(rules.trending_min_mentions(1), 101)
+-        self.assertEqual(rules.trending_min_mentions(2), 401)
+-        self.assertEqual(rules.trending_min_mentions(6), 401)
+-        self.assertEqual(rules.trending_min_mentions(7), 1601)
+-        self.assertEqual(rules.trending_min_mentions(24), 1601)
+-        self.assertEqual(rules.trending_min_mentions(25), 4001)
++        self.assertEqual(rules.trending_min_mentions(0), 50)
++        self.assertEqual(rules.trending_min_mentions(1), 50)
++        self.assertEqual(rules.trending_min_mentions(2), 50)
++        self.assertEqual(rules.trending_min_mentions(6), 200)
++        self.assertEqual(rules.trending_min_mentions(7), 200)
++        self.assertEqual(rules.trending_min_mentions(24), 800)
++        self.assertEqual(rules.trending_min_mentions(25), 800)
